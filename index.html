@@ -631,6 +631,12 @@
       outline: none;
     }
 
+    .day-subtab.active {
+      background: var(--accent-2);
+      border-color: transparent;
+      color: white;
+    }
+
     .tab {
       appearance: none;
       background: rgba(255, 255, 255, 0.38);
@@ -2242,6 +2248,7 @@
     let timelineDaysState = [];
     let mapDaysState = [];
     let currentTimelineFilter = "all";
+    let currentTimelineDayId = "";
     let currentMapDayId = "";
     let dragState = null;
     const editModes = {
@@ -3128,6 +3135,12 @@
       if (!tabOptions.some((tab) => tab.key === currentTimelineFilter)) {
         currentTimelineFilter = "all";
       }
+      if (currentTimelineDayId) {
+        const selectedDayStillVisible = timelineDaysState.some((day) => day.id === currentTimelineDayId && (currentTimelineFilter === "all" || day.key === currentTimelineFilter));
+        if (!selectedDayStillVisible) {
+          currentTimelineDayId = "";
+        }
+      }
       document.getElementById("tabs").innerHTML = tabOptions.map((tab, index) => `
         <button class="tab ${(index === 0 && currentTimelineFilter === "all") || tab.key === currentTimelineFilter ? "active" : ""}" type="button" data-filter="${tab.key}">${tab.label}</button>
       `).join("");
@@ -3138,7 +3151,7 @@
       mapDayTabsEl.innerHTML = mapDaysState.map((day) => `
         <button class="map-day-tab ${day.id === currentMapDayId ? "active" : ""}" type="button" data-map-day="${day.id}">${day.label}</button>
       `).join("");
-      applyFilter(currentTimelineFilter);
+      applyFilter(currentTimelineFilter, { preserveDaySelection: true });
       renderMap(currentMapDayId || mapDaysState[0]?.id);
       renderModuleModes();
       updateCountdown();
@@ -3363,8 +3376,17 @@
       return dayLinks.find((group) => normalizeDayKeyText(group.title) === targetKey) || null;
     }
 
-    function applyFilter(filter) {
+    function applyFilter(filter, options = {}) {
+      const { preserveDaySelection = false } = options;
       currentTimelineFilter = filter;
+      if (!preserveDaySelection) {
+        currentTimelineDayId = "";
+      } else if (currentTimelineDayId) {
+        const selectedDayStillVisible = timelineDaysState.some((day) => day.id === currentTimelineDayId && (filter === "all" || day.key === filter));
+        if (!selectedDayStillVisible) {
+          currentTimelineDayId = "";
+        }
+      }
       document.querySelectorAll(".tab").forEach((tab) => {
         tab.classList.toggle("active", tab.dataset.filter === filter);
       });
@@ -3372,8 +3394,9 @@
         tab.classList.toggle("active", tab.dataset.filter === filter);
       });
       document.querySelectorAll(".day-card").forEach((card) => {
-        const matches = filter === "all" || card.dataset.key === filter;
-        card.classList.toggle("hidden", !matches);
+        const matchesFilter = filter === "all" || card.dataset.key === filter;
+        const matchesDay = !currentTimelineDayId || card.id === currentTimelineDayId;
+        card.classList.toggle("hidden", !(matchesFilter && matchesDay));
       });
       renderDaySubtabs(filter);
       renderModuleModes();
@@ -3382,8 +3405,15 @@
     function renderDaySubtabs(filter) {
       const visibleDays = timelineDaysState.filter((day) => filter === "all" || day.key === filter);
       daySubtabsEl.innerHTML = visibleDays.map((day) => `
-        <a class="day-subtab" href="#${day.id}" data-day-target="${day.id}">${formatMapLabelFromDate(day.date) || day.title.split("｜")[0]}</a>
+        <a class="day-subtab ${day.id === currentTimelineDayId ? "active" : ""}" href="#${day.id}" data-day-target="${day.id}">${formatMapLabelFromDate(day.date) || day.title.split("｜")[0]}</a>
       `).join("");
+    }
+
+    function selectTimelineDay(dayId) {
+      const targetDay = timelineDaysState.find((day) => day.id === dayId);
+      if (!targetDay) return;
+      currentTimelineDayId = dayId;
+      applyFilter(currentTimelineFilter, { preserveDaySelection: true });
     }
 
     function renderMap(dayId = currentMapDayId || mapDaysState[0]?.id) {
@@ -3851,6 +3881,7 @@
       const link = event.target.closest(".day-subtab");
       if (!link) return;
       event.preventDefault();
+      selectTimelineDay(link.dataset.dayTarget);
       const target = document.getElementById(link.dataset.dayTarget);
       if (!target) return;
       target.scrollIntoView({ behavior: "smooth", block: "start" });
