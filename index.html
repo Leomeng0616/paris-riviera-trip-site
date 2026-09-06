@@ -1,0 +1,4169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巴黎到南法旅行手册</title>
+  <meta name="description" content="巴黎四天三晚与南法四天三晚的精细化旅行手册，含住宿、车票、逐日安排、地图与倒计时。">
+  <style>
+    :root {
+      --bg: #f7f2e8;
+      --paper: rgba(255, 251, 245, 0.82);
+      --paper-strong: rgba(255, 249, 240, 0.96);
+      --ink: #1f2933;
+      --muted: #55606f;
+      --line: rgba(63, 76, 91, 0.14);
+      --accent: #c45f3c;
+      --accent-soft: rgba(196, 95, 60, 0.12);
+      --accent-2: #1d6f67;
+      --accent-2-soft: rgba(29, 111, 103, 0.12);
+      --accent-3: #d9a441;
+      --shadow: 0 18px 50px rgba(63, 47, 36, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --maxw: 1200px;
+      --font-display: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      --font-body: "SF Pro Text", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14202c;
+        --paper: rgba(18, 30, 42, 0.8);
+        --paper-strong: rgba(19, 33, 46, 0.95);
+        --ink: #eef4f6;
+        --muted: #b8c5cf;
+        --line: rgba(206, 224, 235, 0.14);
+        --accent: #ff8c69;
+        --accent-soft: rgba(255, 140, 105, 0.13);
+        --accent-2: #67c3b5;
+        --accent-2-soft: rgba(103, 195, 181, 0.13);
+        --accent-3: #ffd476;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(217, 164, 65, 0.22), transparent 26%),
+        radial-gradient(circle at top right, rgba(29, 111, 103, 0.18), transparent 24%),
+        linear-gradient(180deg, #f5efe4 0%, #f4f1eb 45%, #e8f0ee 100%);
+      min-height: 100vh;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(255, 212, 118, 0.12), transparent 26%),
+          radial-gradient(circle at top right, rgba(103, 195, 181, 0.12), transparent 24%),
+          linear-gradient(180deg, #10202d 0%, #142733 52%, #10252a 100%);
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(calc(100vw - 28px), var(--maxw));
+      margin: 0 auto;
+      padding: 24px 0 64px;
+    }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .content-stack {
+      min-width: 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      padding: 18px;
+      border-radius: 28px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+    }
+
+    .sidebar-title {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+    }
+
+    .sidebar-copy {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .bookmark-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .bookmark-link,
+    .timeline-filter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--ink);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .bookmark-link:hover,
+    .bookmark-link:focus-visible,
+    .timeline-filter:hover,
+    .timeline-filter:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .bookmark-link.active,
+    .timeline-filter.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+
+    .bookmark-index {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .bookmark-link.active .bookmark-index {
+      background: rgba(255, 255, 255, 0.24);
+      color: white;
+    }
+
+    .sidebar-group-title {
+      margin: 18px 0 0;
+      color: var(--accent-2);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 249, 240, 0.88), rgba(235, 244, 241, 0.86));
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: var(--shadow);
+      border-radius: 34px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero {
+        background: linear-gradient(135deg, rgba(20, 35, 49, 0.94), rgba(17, 46, 49, 0.9));
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -60px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 95, 60, 0.25), transparent 60%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.44);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--accent-2);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span:last-child {
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-weight: 600;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .subhead {
+      margin: 18px 0 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .hero-route {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .route-pill,
+    .stat,
+    .note,
+    .chip,
+    .map-link,
+    .tab {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .route-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.45);
+      font-size: 0.93rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 24px 0 0 var(--accent-3), 48px 0 0 var(--accent-2);
+      margin-right: 50px;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      grid-template-columns: 1fr;
+      margin-top: 18px;
+    }
+
+    .glass {
+      background: var(--paper);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .countdown-card,
+    .side-card,
+    .section,
+    .day-card {
+      border-radius: var(--radius-xl);
+    }
+
+    .countdown-card,
+    .side-card {
+      padding: 18px;
+    }
+
+    .countdown-label,
+    .section-head .tag {
+      color: var(--accent-2);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .countdown-value {
+      margin-top: 10px;
+      font-size: clamp(1.8rem, 5vw, 3.1rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .countdown-sub,
+    .muted {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .next-event {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--paper-strong);
+      border: 1px solid var(--line);
+    }
+
+    .next-event strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.02rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 14px 16px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .stat strong {
+      font-size: 1.15rem;
+      line-height: 1.35;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .section {
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .section-head h2 {
+      margin: 8px 0 0;
+      font-size: clamp(1.2rem, 2vw, 1.75rem);
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .voucher-list,
+    .checklist,
+    .day-links,
+    .fare-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .voucher-item,
+    .check-item,
+    .fare-item,
+    .day-link-card {
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--paper-strong);
+      border: 1px solid var(--line);
+    }
+
+    .voucher-item h3,
+    .day-card h3,
+    .day-link-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .item-footer {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .section-action,
+    .item-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.84rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .section-action:hover,
+    .section-action:focus-visible,
+    .item-action:hover,
+    .item-action:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .inline-editable {
+      cursor: default;
+      transition: color 180ms ease, opacity 180ms ease;
+    }
+
+    .is-editing .inline-editable {
+      cursor: pointer;
+    }
+
+    .is-editing .inline-editable:hover,
+    .is-editing .inline-editable:focus-visible {
+      color: var(--accent);
+      outline: none;
+    }
+
+    .inline-editable.is-empty {
+      min-height: 1.25em;
+    }
+
+    .inline-editable.is-empty::before {
+      content: attr(data-empty-label);
+      color: var(--muted);
+      opacity: 0.72;
+    }
+
+    .inline-editable-hint {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      max-width: 100%;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, 0.52);
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .chip-item {
+      position: relative;
+      cursor: default;
+    }
+
+    .is-editing .chip-item {
+      cursor: grab;
+    }
+
+    .chip-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chip-add,
+    .chip-remove {
+      display: none;
+      flex: 0 0 auto;
+    }
+
+    .is-editing .chip-add,
+    .is-editing .chip-remove {
+      display: inline-flex;
+    }
+
+    .chip-remove {
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--ink);
+      font-size: 0.72rem;
+      line-height: 1;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .chip-add {
+      padding: 5px 8px;
+    }
+
+    .chip.alert {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(196, 95, 60, 0.18);
+    }
+
+    .chip.good {
+      background: var(--accent-2-soft);
+      color: var(--accent-2);
+      border-color: rgba(29, 111, 103, 0.18);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      margin-bottom: 16px;
+    }
+
+    .day-subtabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .day-subtab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--ink);
+      font-size: 0.9rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .day-subtab:hover,
+    .day-subtab:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .tab {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.38);
+      color: var(--ink);
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .tab:hover,
+    .tab:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.65);
+      outline: none;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+
+    .filter-drawer {
+      margin-top: 12px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--paper-strong);
+      overflow: hidden;
+    }
+
+    .filter-drawer summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .filter-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .filter-drawer summary::after {
+      content: "+";
+      font-size: 1.15rem;
+      color: var(--accent-2);
+    }
+
+    .filter-drawer[open] summary::after {
+      content: "-";
+    }
+
+    .filter-drawer-body {
+      display: grid;
+      gap: 10px;
+      padding: 0 16px 16px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-anchor {
+      scroll-margin-top: 28px;
+    }
+
+    .day-card {
+      position: relative;
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: var(--shadow);
+      transition: opacity 240ms ease, transform 240ms ease;
+    }
+
+    .day-card.hidden {
+      display: none;
+    }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .day-title-wrap p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .day-badge {
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent-soft), rgba(255, 255, 255, 0.3));
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 96px;
+      text-align: center;
+    }
+
+    .events {
+      display: grid;
+      gap: 10px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--paper-strong);
+      border: 1px solid var(--line);
+    }
+
+    .event-time {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--accent-2);
+      letter-spacing: -0.02em;
+    }
+
+    .event h4 {
+      margin: 0 0 7px;
+      font-size: 1rem;
+    }
+
+    .event p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .event .meta-line {
+      margin-top: 12px;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .map-section {
+      margin-top: 20px;
+    }
+
+    .map-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .map-day-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .map-day-tab {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .map-day-tab:hover,
+    .map-day-tab:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .map-day-tab.active {
+      background: var(--accent-2);
+      border-color: transparent;
+      color: white;
+    }
+
+    .trip-map-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .map-frame,
+    .map-legend {
+      padding: 16px;
+      border-radius: 24px;
+      background: var(--paper-strong);
+      border: 1px solid var(--line);
+    }
+
+    .map-title {
+      margin: 0;
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .map-summary {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .map-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .map-action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--ink);
+      font-size: 0.92rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .map-action-link:hover,
+    .map-action-link:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .map-embed-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .map-stage {
+      margin-top: 16px;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(234, 242, 239, 0.7)),
+        radial-gradient(circle at top left, rgba(217, 164, 65, 0.18), transparent 30%);
+      border: 1px solid var(--line);
+      min-height: 400px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .map-stage {
+        background:
+          linear-gradient(180deg, rgba(20, 35, 49, 0.95), rgba(18, 45, 48, 0.92)),
+          radial-gradient(circle at top left, rgba(255, 212, 118, 0.08), transparent 30%);
+      }
+    }
+
+    .map-stage svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .map-point-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid var(--line);
+    }
+
+    .map-point-card + .map-point-card {
+      margin-top: 10px;
+    }
+
+    .item-edit-tools {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .is-editing .item-edit-tools {
+      display: flex;
+    }
+
+    .section-action.active {
+      background: var(--accent-2);
+      border-color: transparent;
+      color: white;
+    }
+
+    .map-point-card h4 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+    }
+
+    .map-point-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .map-day-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .check-content {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .check-text {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .check-note {
+      font: inherit;
+    }
+
+    .check-note {
+      width: 100%;
+      min-height: 86px;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--ink);
+      resize: vertical;
+    }
+
+    .check-note::placeholder {
+      color: var(--muted);
+    }
+
+    .check-index {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent-2-soft);
+      color: var(--accent-2);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .fare-item {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fare-main {
+      min-width: 0;
+    }
+
+    .fare-label {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .fare-detail {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .fare-status {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 1.02rem;
+      font-weight: 800;
+      white-space: nowrap;
+      color: var(--accent);
+    }
+
+    .item-attachments {
+      margin-top: 2px;
+    }
+
+    .attachment-upload,
+    .attachment-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .attachment-upload:hover,
+    .attachment-upload:focus-visible,
+    .attachment-action:hover,
+    .attachment-action:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .attachment-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .attachment-list:empty {
+      display: none;
+    }
+
+    .attachment-item,
+    .attachment-empty {
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    .attachment-item-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .attachment-item h4 {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .attachment-meta {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .attachment-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .attachment-empty {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .list-empty {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.52);
+      font-size: 0.92rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .map-link:hover,
+    .map-link:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.72);
+      outline: none;
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding: 18px 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      border-radius: 22px;
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 980px) {
+      .page-layout,
+      .hero-grid,
+      .grid,
+      .notes-grid,
+      .trip-map-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sidebar {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+
+      .bookmark-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(calc(100vw - 18px), var(--maxw));
+        padding-top: 10px;
+      }
+
+      .hero,
+      .section,
+      .day-card {
+        border-radius: 24px;
+      }
+
+      .hero,
+      .section,
+      .countdown-card,
+      .side-card,
+      .day-card {
+        padding: 18px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+      }
+
+      .day-head {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .bookmark-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .trip-map-layout {
+        gap: 14px;
+      }
+
+      .map-stage,
+      .map-stage svg {
+        min-height: 320px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell page-layout">
+    <aside class="sidebar glass">
+      <h2 class="sidebar-title">旅行书签</h2>
+      <p class="sidebar-copy">左侧目录会一直保留，你可以随时跳到指定模块。目录太长时会在侧栏内部滚动，不会把整页顶出去。</p>
+      <nav class="bookmark-list" aria-label="页面书签">
+        <a class="bookmark-link active" href="#overview" data-bookmark="overview"><span class="bookmark-index">01</span><span>总览</span></a>
+        <a class="bookmark-link" href="#essentials" data-bookmark="essentials"><span class="bookmark-index">02</span><span>凭证与费用</span></a>
+        <a class="bookmark-link" href="#timeline-section" data-bookmark="timeline-section"><span class="bookmark-index">03</span><span>逐日安排</span></a>
+        <a class="bookmark-link" href="#trip-map" data-bookmark="trip-map"><span class="bookmark-index">04</span><span>每日地图</span></a>
+        <a class="bookmark-link" href="#checks-section" data-bookmark="checks-section"><span class="bookmark-index">05</span><span>出发前确认</span></a>
+      </nav>
+    </aside>
+
+    <div class="content-stack">
+    <section class="hero section-anchor" id="overview" data-bookmark-section>
+      <div class="eyebrow">
+        <span>Travel File</span>
+        <span>Paris to Cote d'Azur</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>巴黎到南法<br>十日旅行手册</h1>
+          <p class="subhead">
+            覆盖 2026 年 9 月 29 日到 10 月 8 日。把上海出发、北京转机、巴黎四天三晚、TGV 南下、昂蒂布海岸线、埃兹与摩纳哥、尼斯老城与返程航班整合成一份手机优先的行程站点。
+          </p>
+          <div class="hero-route">
+            <div class="route-pill"><span class="dot"></span>上海虹桥机场 → 北京首都机场 → 巴黎戴高乐机场 → 巴黎 → 里昂车站 → 马赛圣夏尔站 → 昂蒂布 → 埃兹 → 摩纳哥 → 尼斯机场 → 慕尼黑机场 → 上海浦东机场</div>
+          </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <small>总时长</small>
+          <strong>10 天行程</strong>
+        </div>
+        <div class="stat">
+          <small>住宿</small>
+          <strong>巴黎 2 家 + 昂蒂布 1 家</strong>
+        </div>
+        <div class="stat">
+          <small>关键票面</small>
+          <strong>2 段国际航班 + 1 段 TGV</strong>
+        </div>
+        <div class="stat">
+          <small>最新铁路线</small>
+          <strong>TGV 6177<br>14:10 Paris → Marseille</strong>
+        </div>
+      </div>
+      <div class="hero-side">
+        <article class="countdown-card glass">
+          <div class="countdown-label">Now Focus</div>
+          <div class="countdown-value" id="countdown">加载中</div>
+          <p class="countdown-sub" id="countdownSub">正在计算下一段关键节点。</p>
+          <div class="next-event" id="nextEventCard">
+            <strong>下一事件</strong>
+            <span class="muted">页面加载后将显示出发前最重要的节点。</span>
+          </div>
+        </article>
+        <article class="side-card glass">
+          <div class="countdown-label">Trip Alerts</div>
+          <div class="meta-line">
+            <span class="chip alert">10 月 3 日为周六</span>
+            <span class="chip alert">10 月 3 日 TGV 已更新为 Paris → Marseille</span>
+            <span class="chip alert">法国境内时区统一为 Europe/Paris</span>
+            <span class="chip good">PNR、票号、证件号未写入公开页</span>
+          </div>
+          <p class="muted" style="margin: 12px 0 0;">
+            你补充的票面显示 10 月 3 日这段已改成 TGV INOUI 6177，14:10 从 Paris Gare de Lyon 出发，17:14 到 Marseille Saint-Charles。页面已据此更新，并把马赛到昂蒂布的后续接驳标记为待确认。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid section-anchor" id="essentials" data-bookmark-section>
+      <article class="section">
+        <div class="section-head">
+          <div>
+            <div class="tag">Vouchers</div>
+            <h2>核心凭证与住宿</h2>
+          </div>
+          <div class="section-actions">
+            <div class="muted">按实际入住顺序</div>
+            <button class="section-action" type="button" id="editVoucherBtn">编辑</button>
+            <button class="section-action hidden" type="button" id="addVoucherBtn">新增</button>
+          </div>
+        </div>
+        <div class="voucher-list" id="voucherList"></div>
+      </article>
+
+      <article class="section">
+        <div class="section-head">
+          <div>
+            <div class="tag">Transit</div>
+            <h2>费用与通票建议</h2>
+          </div>
+          <div class="section-actions">
+            <div class="muted">不含博物馆门票</div>
+            <button class="section-action" type="button" id="editFareBtn">编辑</button>
+            <button class="section-action hidden" type="button" id="addFareBtn">新增</button>
+          </div>
+        </div>
+        <div class="fare-list" id="fareList"></div>
+      </article>
+    </section>
+
+    <section class="section section-anchor" id="timeline-section" data-bookmark-section style="margin-top: 20px;">
+      <div class="section-head">
+        <div>
+          <div class="tag">Timeline</div>
+          <h2>逐日安排</h2>
+        </div>
+        <div class="section-actions">
+          <div class="muted">点击标签可筛选城市段</div>
+          <button class="section-action" type="button" id="editTimelineBtn">编辑</button>
+          <button class="section-action hidden" type="button" id="addTimelineDayBtn">新增日期</button>
+        </div>
+      </div>
+      <div class="tabs" id="tabs"></div>
+      <div class="day-subtabs" id="daySubtabs"></div>
+      <details class="filter-drawer">
+        <summary>快速筛选每日安排</summary>
+        <div class="filter-drawer-body" id="timelineFilters"></div>
+      </details>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="section map-section section-anchor" id="trip-map" data-bookmark-section>
+      <div class="section-head">
+        <div>
+          <div class="tag">Map View</div>
+          <h2>每日目的地地图</h2>
+        </div>
+        <div class="section-actions">
+          <div class="muted">按天切换，地图会同步更新标点</div>
+          <button class="section-action" type="button" id="editMapBtn">编辑</button>
+          <button class="section-action hidden" type="button" id="addMapPointBtn">新增地点</button>
+        </div>
+      </div>
+      <div class="map-toolbar">
+        <div class="map-day-tabs" id="mapDayTabs"></div>
+      </div>
+      <div class="trip-map-layout">
+        <article class="map-frame">
+          <h3 class="map-title" id="mapTitle">加载地图中</h3>
+          <p class="map-summary" id="mapSummary">正在整理当天目的地与路径。</p>
+          <div class="map-actions">
+            <a class="map-action-link" id="mapGoogleLink" href="https://www.google.com/maps" target="_blank" rel="noreferrer">打开当日 Google Maps 路线</a>
+            <p class="map-embed-note" id="mapEmbedNote">完整多点顺序直嵌 Google Map 通常需要额外的 Embed/API 配置。</p>
+          </div>
+          <div class="map-stage">
+            <svg id="tripMapSvg" viewBox="0 0 100 60" role="img" aria-label="每日目的地地图"></svg>
+          </div>
+          <div class="map-day-links" id="mapDayLinks"></div>
+        </article>
+        <aside class="map-legend" id="mapLegend"></aside>
+      </div>
+    </section>
+
+    <section class="notes-grid">
+      <article class="section section-anchor" id="checks-section" data-bookmark-section>
+        <div class="section-head">
+          <div>
+            <div class="tag">Checks</div>
+            <h2>出发前再确认</h2>
+          </div>
+          <div class="section-actions">
+            <div class="muted">把风险放在显眼位置</div>
+            <button class="section-action" type="button" id="editCheckBtn">编辑</button>
+            <button class="section-action hidden" type="button" id="addCheckBtn">新增</button>
+          </div>
+        </div>
+        <div class="checklist" id="checklist"></div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      页面为单文件静态站点，适合直接托管或本地打开。航班与火车段已按你新上传的票面更新，但公开页仍刻意隐藏了 PNR、票号、证件号与二维码。景点开放、火险封路、马赛到昂蒂布接驳和机场夜间过夜规则，仍建议在 2026 年 9 月 29 日和 10 月 2 日各复核一次。
+    </footer>
+    </div>
+  </main>
+
+  <script>
+    const defaultVouchers = [
+      {
+        id: "flight-outbound",
+        title: "去程机票｜SHA → PEK → CDG",
+        stay: "2026-09-29 晚出发 / 2026-09-30 早抵达",
+        body: "CA1510 21:30 上海虹桥 T2 → 23:55 北京首都 T3；CA875 01:55 北京首都 T3 → 06:25 巴黎戴高乐 T1。",
+        chips: ["已按票面更新", "去程为北京转机", "公开页不展示 PNR 与票号"]
+      },
+      {
+        id: "hotel-paris-ivry",
+        title: "住宿 1｜Oden Paris Ivry",
+        stay: "2026-09-30 至 2026-10-02",
+        body: "23 Avenue Pierre Semard, 94200 Ivry-sur-Seine",
+        chips: ["RER C Ivry-sur-Seine 步行 3 分钟", "地铁 7 号线 Mairie d'Ivry 步行 10 分钟", "巴黎前两晚基地"]
+      },
+      {
+        id: "hotel-paris-orleans",
+        title: "住宿 2｜ibis Paris Porte D'Orleans",
+        stay: "2026-10-02 至 2026-10-03",
+        body: "33 rue Barbes, 92120 Montrouge",
+        chips: ["地铁 4 号线 Porte d'Orleans 步行 4 分钟", "换酒店后方便去里昂车站", "10 月 3 日早退房"]
+      },
+      {
+        id: "tgv-paris-marseille",
+        title: "跨城车票｜TGV INOUI 6177",
+        stay: "2026-10-03 14:10 发车",
+        body: "Paris Gare de Lyon → Marseille Saint-Charles，1 等座，Voiture 13 Haut，Place 351。",
+        chips: ["车程约 3 小时 04 分", "票面价格 €62", "马赛到昂蒂布接驳待确认"]
+      },
+      {
+        id: "hotel-antibes",
+        title: "南法住宿｜Antibes",
+        stay: "预计 2026-10-03 晚入住",
+        body: "5 Avenue Gazan, 06600 Antibes",
+        chips: ["Antibes 车站步行约 10-15 分钟", "10 月 4 日至 10 月 6 日南法基地", "10 月 6 日晚前往 Nice Airport"]
+      },
+      {
+        id: "flight-return",
+        title: "返程机票｜NCE → MUC → PVG",
+        stay: "2026-10-07 清晨起飞 / 2026-10-08 抵沪",
+        body: "LH2277 06:05 尼斯 T1 → 07:30 慕尼黑 T2；CA828 12:10 慕尼黑 T2 → 次日 05:10 上海浦东 T2。",
+        chips: ["返程经慕尼黑转机", "10 月 7 日凌晨从机场执行", "公开页不展示 PNR 与票号"]
+      }
+    ];
+
+    const defaultFares = [
+      { id: "fare-flight-outbound", label: "9 月 29 日", value: "已出票", detail: "CA1510 + CA875，上海经北京飞巴黎" },
+      { id: "fare-tgv-southbound", label: "10 月 3 日", value: "€62 + 待补", detail: "Paris → Marseille TGV 已确认，Marseille → Antibes 接驳待确认" },
+      { id: "fare-antibes-local", label: "10 月 4 日", value: "约 €4 / 人", detail: "Envibus 往返海岸线" },
+      { id: "fare-monaco-daytrip", label: "10 月 5 日", value: "€18-26 / 人", detail: "Antibes ↔ Monaco + 82 路公交" },
+      { id: "fare-nice-airport", label: "10 月 6 日", value: "€7-9 / 人", detail: "Antibes → Nice Ville + Nice 电车到机场" },
+      { id: "fare-flight-return", label: "10 月 7 日", value: "已出票", detail: "LH2277 + CA828，尼斯经慕尼黑返沪" },
+      { id: "fare-pass-advice", label: "通票建议", value: "SudAzur Explore 3 日票约 €35", detail: "价格接近南法单买总和，主要省去反复购票" }
+    ];
+
+    const defaultChecks = [
+      "重新确认卢浮宫、橘园、圣礼拜堂、歌剧院、凯旋门的预约时段与最后入场时间。",
+      "9 月 29 日晚上上海虹桥 T2 和北京首都 T3 的值机、托运行李直挂与转机时间，出发前再看一遍。",
+      "10 月 3 日 TGV 6177 的检票口、Voiture 13 位置和里昂车站当日站台，以免最后时刻换月台。",
+      "10 月 3 日下午这段目前只确认到 Marseille Saint-Charles；请在出发前补齐 Marseille → Antibes 的后续车次或打车方案。",
+      "Cap d'Antibes 海岸线是否因火险、落石或施工临时封闭；若封闭，直接缩短成老城 + La Salis 轻徒步。",
+      "10 月 5 日 Monaco 82 路到 Eze Village 的发车频率；若等车过久，优先保留埃兹古村、海洋馆和摩纳哥老城。",
+      "10 月 6 日 Nice Airport 夜间开放区域、航站楼与安保政策，避免过度依赖现场临时安排。",
+      "10 月 6 日为周二，Cours Saleya 食品市集通常开放；如果遇到特殊活动或调整，仍可保留老城与城堡山。",
+      "10 月 7 日尼斯 T1、慕尼黑 T2 的转机航站楼、登机口和液体安检规则，前一晚就在机场里确认好。"
+    ];
+
+    const dayLinks = [
+      {
+        title: "9 月 29 日｜去程航班",
+        links: [
+          { label: "上海虹桥 T2", href: "https://www.google.com/maps/search/?api=1&query=Shanghai+Hongqiao+International+Airport+Terminal+2" },
+          { label: "北京首都 T3", href: "https://www.google.com/maps/search/?api=1&query=Beijing+Capital+International+Airport+Terminal+3" },
+          { label: "巴黎戴高乐 T1", href: "https://www.google.com/maps/search/?api=1&query=Paris+Charles+de+Gaulle+Airport+Terminal+1" }
+        ]
+      },
+      {
+        title: "9 月 30 日｜巴黎左岸",
+        links: [
+          { label: "卢森堡公园", href: "https://www.google.com/maps/search/?api=1&query=Jardin+du+Luxembourg" },
+          { label: "先贤祠", href: "https://www.google.com/maps/search/?api=1&query=Panth%C3%A9on+Paris" },
+          { label: "莎士比亚书店", href: "https://www.google.com/maps/search/?api=1&query=Shakespeare+%26+Company+Paris" },
+          { label: "Vedettes du Pont Neuf", href: "https://www.google.com/maps/search/?api=1&query=Vedettes+du+Pont+Neuf" }
+        ]
+      },
+      {
+        title: "10 月 1 日｜艺术馆串联",
+        links: [
+          { label: "卢浮宫", href: "https://www.google.com/maps/search/?api=1&query=Mus%C3%A9e+du+Louvre" },
+          { label: "橘园美术馆", href: "https://www.google.com/maps/search/?api=1&query=Mus%C3%A9e+de+l%27Orangerie" },
+          { label: "圣礼拜堂", href: "https://www.google.com/maps/search/?api=1&query=Sainte-Chapelle" }
+        ]
+      },
+      {
+        title: "10 月 2 日｜蒙马特与凯旋门",
+        links: [
+          { label: "圣心堂", href: "https://www.google.com/maps/search/?api=1&query=Basilique+du+Sacr%C3%A9-C%C5%93ur+de+Montmartre" },
+          { label: "小丘广场", href: "https://www.google.com/maps/search/?api=1&query=Place+du+Tertre" },
+          { label: "加尼叶歌剧院", href: "https://www.google.com/maps/search/?api=1&query=Palais+Garnier" },
+          { label: "凯旋门", href: "https://www.google.com/maps/search/?api=1&query=Arc+de+Triomphe" }
+        ]
+      },
+      {
+        title: "10 月 3 日｜马赛接驳南法",
+        links: [
+          { label: "Paris Gare de Lyon", href: "https://www.google.com/maps/search/?api=1&query=Paris+Gare+de+Lyon" },
+          { label: "Marseille Saint-Charles", href: "https://www.google.com/maps/search/?api=1&query=Marseille+Saint-Charles" },
+          { label: "Marseille → Antibes", href: "https://www.google.com/maps/dir/Marseille+Saint-Charles/Gare+d%27Antibes" },
+          { label: "Antibes 车站 → 酒店", href: "https://www.google.com/maps/dir/Gare+d%27Antibes/5+Avenue+Gazan,+06600+Antibes" }
+        ]
+      },
+      {
+        title: "10 月 4 日｜昂蒂布海岸线",
+        links: [
+          { label: "Marché Provençal", href: "https://www.google.com/maps/search/?api=1&query=March%C3%A9+Proven%C3%A7al+Antibes" },
+          { label: "Place Nationale", href: "https://www.google.com/maps/search/?api=1&query=Place+Nationale+Antibes" },
+          { label: "Cap d'Antibes 徒步", href: "https://www.google.com/maps/search/?api=1&query=Cap+d%27Antibes+coastal+walk" },
+          { label: "毕加索博物馆", href: "https://www.google.com/maps/search/?api=1&query=Mus%C3%A9e+Picasso+Antibes" },
+          { label: "La Salis 海滩", href: "https://www.google.com/maps/search/?api=1&query=La+Salis+Antibes" }
+        ]
+      },
+      {
+        title: "10 月 5 日｜埃兹与摩纳哥",
+        links: [
+          { label: "Antibes → Monaco", href: "https://www.google.com/maps/dir/Gare+d%27Antibes/Gare+de+Monaco-Monte-Carlo" },
+          { label: "Monaco → Eze Village", href: "https://www.google.com/maps/dir/Gare+de+Monaco-Monte-Carlo/Eze+Village" },
+          { label: "埃兹古村", href: "https://www.google.com/maps/search/?api=1&query=Eze+Village+France" },
+          { label: "海洋学博物馆", href: "https://www.google.com/maps/search/?api=1&query=Oceanographic+Museum+of+Monaco" },
+          { label: "摩纳哥老城", href: "https://www.google.com/maps/search/?api=1&query=Monaco+Ville" }
+        ]
+      },
+      {
+        title: "10 月 6 日｜尼斯与机场",
+        links: [
+          { label: "Antibes → Nice Ville", href: "https://www.google.com/maps/dir/Gare+d%27Antibes/Nice+Ville+Station" },
+          { label: "尼斯圣母殿", href: "https://www.google.com/maps/search/?api=1&query=Basilique+Notre-Dame+de+Nice" },
+          { label: "尼斯老城", href: "https://www.google.com/maps/search/?api=1&query=Vieux+Nice" },
+          { label: "Cours Saleya", href: "https://www.google.com/maps/search/?api=1&query=Cours+Saleya+Nice" },
+          { label: "城堡山", href: "https://www.google.com/maps/search/?api=1&query=Colline+du+Ch%C3%A2teau+Nice" },
+          { label: "Promenade des Anglais", href: "https://www.google.com/maps/search/?api=1&query=Promenade+des+Anglais+Nice" },
+          { label: "天使湾 → 机场", href: "https://www.google.com/maps/dir/Promenade+des+Anglais+Nice/Nice+C%C3%B4te+d%27Azur+Airport" }
+        ]
+      },
+      {
+        title: "10 月 7 日｜返程航班",
+        links: [
+          { label: "Nice Airport T1", href: "https://www.google.com/maps/search/?api=1&query=Nice+C%C3%B4te+d%27Azur+Airport+Terminal+1" },
+          { label: "Munich Airport T2", href: "https://www.google.com/maps/search/?api=1&query=Munich+Airport+Terminal+2" },
+          { label: "Shanghai Pudong T2", href: "https://www.google.com/maps/search/?api=1&query=Shanghai+Pudong+International+Airport+Terminal+2" }
+        ]
+      }
+    ];
+
+    const mapViews = {
+      wide: {
+        viewBox: "0 0 100 60",
+        label: "长线交通图",
+        backdrop: `
+          <defs>
+            <linearGradient id="seaWide" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+              <stop offset="100%" stop-color="rgba(29,111,103,0.22)" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="100" height="60" fill="url(#seaWide)" />
+          <path d="M12 14 C22 10, 28 12, 34 18 C38 22, 39 27, 37 32 C34 36, 36 40, 41 41 C48 42, 52 38, 55 34 C58 30, 66 28, 74 24 C80 22, 85 24, 88 28" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="10" stroke-linecap="round" />
+          <text x="12" y="10" fill="currentColor" opacity="0.5" font-size="3">East Asia</text>
+          <text x="42" y="14" fill="currentColor" opacity="0.5" font-size="3">France</text>
+          <text x="55" y="15" fill="currentColor" opacity="0.5" font-size="3">Germany</text>
+        `
+      },
+      paris: {
+        viewBox: "0 0 100 70",
+        label: "巴黎城区图",
+        backdrop: `
+          <rect x="0" y="0" width="100" height="70" fill="rgba(255,255,255,0.08)" />
+          <path d="M20 58 C32 46, 44 38, 53 30 C58 25, 67 22, 79 20" fill="none" stroke="rgba(29,111,103,0.28)" stroke-width="3.8" stroke-linecap="round" />
+          <path d="M16 54 C29 57, 39 56, 48 51 C58 46, 68 38, 84 30" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="14" stroke-linecap="round" />
+          <circle cx="59" cy="29" r="8" fill="rgba(196,95,60,0.08)" />
+          <text x="20" y="15" fill="currentColor" opacity="0.5" font-size="3.2">Paris Left Bank</text>
+          <text x="58" y="18" fill="currentColor" opacity="0.4" font-size="2.8">Seine</text>
+        `
+      },
+      riviera: {
+        viewBox: "0 0 100 60",
+        label: "南法海岸图",
+        backdrop: `
+          <rect x="0" y="0" width="100" height="60" fill="rgba(255,255,255,0.06)" />
+          <path d="M8 22 C18 18, 26 16, 34 20 C44 24, 50 26, 62 28 C76 30, 86 25, 95 16" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="18" stroke-linecap="round" />
+          <path d="M8 34 C22 30, 34 31, 50 34 C64 37, 82 34, 95 28" fill="none" stroke="rgba(29,111,103,0.32)" stroke-width="3.4" stroke-linecap="round" />
+          <text x="10" y="14" fill="currentColor" opacity="0.5" font-size="3">Marseille</text>
+          <text x="67" y="15" fill="currentColor" opacity="0.5" font-size="3">Cote d'Azur</text>
+          <text x="68" y="48" fill="currentColor" opacity="0.45" font-size="3">Mediterranean Sea</text>
+        `
+      }
+    };
+
+    const defaultMapDays = [
+      {
+        id: "map-d0",
+        label: "9.29",
+        title: "Day 0｜去程航班落点",
+        summary: "这一天是从上海到巴黎的长线位移，地图上只保留机场和转机节点。",
+        mapType: "wide",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Shanghai+Hongqiao+International+Airport+Terminal+2&destination=Paris+Charles+de+Gaulle+Airport+Terminal+1&waypoints=Beijing+Capital+International+Airport+Terminal+3&travelmode=driving",
+        points: [
+          { name: "Shanghai Hongqiao T2", note: "CA1510 起点", x: 84, y: 41 },
+          { name: "Beijing Capital T3", note: "当晚转机", x: 79, y: 17 },
+          { name: "Paris CDG T1", note: "次日清晨抵达", x: 39, y: 16 }
+        ]
+      },
+      {
+        id: "map-d1",
+        label: "9.30",
+        title: "Day 1｜巴黎左岸慢逛",
+        summary: "第一天的点位主要集中在左岸和西岱岛，适合步行串联。",
+        mapType: "paris",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Oden+Paris+Ivry&destination=Vedettes+du+Pont+Neuf&waypoints=Jardin+du+Luxembourg|Pantheon+Paris|Shakespeare+%26+Company+Paris|Notre-Dame+Cathedral+Paris&travelmode=walking",
+        points: [
+          { name: "Oden Paris Ivry", note: "酒店出发", x: 19, y: 56 },
+          { name: "Jardin du Luxembourg", note: "午后放松", x: 39, y: 42 },
+          { name: "Pantheon", note: "外围打卡", x: 48, y: 34 },
+          { name: "Shakespeare & Company", note: "书店与河岸", x: 60, y: 30 },
+          { name: "Notre-Dame / Pont Neuf", note: "游船前散步", x: 67, y: 25 },
+          { name: "Vedettes du Pont Neuf", note: "夕阳游船", x: 57, y: 23 }
+        ]
+      },
+      {
+        id: "map-d2",
+        label: "10.1",
+        title: "Day 2｜艺术馆串联",
+        summary: "卢浮宫、橘园和圣礼拜堂沿河排开，地图上能看出这条顺向动线。",
+        mapType: "paris",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Mairie+d%27Ivry&destination=Sainte-Chapelle&waypoints=Mus%C3%A9e+du+Louvre|Mus%C3%A9e+de+l%27Orangerie&travelmode=transit",
+        points: [
+          { name: "Mairie d'Ivry", note: "地铁 7 号线出发", x: 24, y: 57 },
+          { name: "Musee du Louvre", note: "上午主场", x: 46, y: 24 },
+          { name: "Musee de l'Orangerie", note: "午后睡莲", x: 36, y: 27 },
+          { name: "Sainte-Chapelle", note: "彩窗收尾", x: 59, y: 28 }
+        ]
+      },
+      {
+        id: "map-d3",
+        label: "10.2",
+        title: "Day 3｜蒙马特到凯旋门",
+        summary: "上午去北边高地，下午切回歌剧院和凯旋门，折返比前两天更明显。",
+        mapType: "paris",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=ibis+Paris+Porte+D%27Orleans&destination=Arc+de+Triomphe&waypoints=Basilique+du+Sacr%C3%A9-C%C5%93ur+de+Montmartre|Place+du+Tertre|Palais+Garnier&travelmode=transit",
+        points: [
+          { name: "ibis Porte d'Orleans", note: "换酒店后出发", x: 26, y: 58 },
+          { name: "Sacre-Coeur", note: "巴黎高点", x: 56, y: 12 },
+          { name: "Place du Tertre", note: "画家村", x: 60, y: 16 },
+          { name: "Palais Garnier", note: "下午主建筑", x: 45, y: 25 },
+          { name: "Arc de Triomphe", note: "日落压轴", x: 25, y: 24 }
+        ]
+      },
+      {
+        id: "map-d4",
+        label: "10.3",
+        title: "Day 4｜巴黎到马赛，再接驳南法",
+        summary: "这一天最重要的是 Paris → Marseille 的确认票面。马赛到昂蒂布的后半段仍需你补齐。",
+        mapType: "riviera",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Paris+Gare+de+Lyon&destination=Gare+d%27Antibes&waypoints=Marseille+Saint-Charles&travelmode=transit",
+        points: [
+          { name: "Paris Gare de Lyon", note: "TGV 6177 起点", x: 18, y: 12 },
+          { name: "Marseille Saint-Charles", note: "17:14 抵达", x: 14, y: 24 },
+          { name: "Antibes", note: "后半段目的地", x: 70, y: 27 },
+          { name: "5 Avenue Gazan", note: "夜间入住", x: 74, y: 31 }
+        ]
+      },
+      {
+        id: "map-d5",
+        label: "10.4",
+        title: "Day 5｜昂蒂布海岸线",
+        summary: "今天的目的地都聚在昂蒂布老城和海角周边，地图会更像一条海岸散步线。",
+        mapType: "riviera",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=March%C3%A9+Proven%C3%A7al+Antibes&destination=La+Salis+Antibes&waypoints=Place+Nationale+Antibes|Fontaine+Antibes|Cap+d%27Antibes+coastal+walk|Mus%C3%A9e+Picasso+Antibes&travelmode=walking",
+        points: [
+          { name: "Marche Provencal", note: "早市", x: 71, y: 25 },
+          { name: "Place Nationale", note: "古董市集", x: 73, y: 23 },
+          { name: "Fontaine", note: "补给点", x: 78, y: 33 },
+          { name: "Cap d'Antibes", note: "海岸徒步", x: 84, y: 42 },
+          { name: "Musee Picasso", note: "午后博物馆", x: 68, y: 24 },
+          { name: "La Salis", note: "回望老城", x: 79, y: 29 }
+        ]
+      },
+      {
+        id: "map-d6",
+        label: "10.5",
+        title: "Day 6｜埃兹与摩纳哥",
+        summary: "这一天沿海岸由西向东推进，埃兹在山上，摩纳哥点位更靠海。",
+        mapType: "riviera",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Gare+d%27Antibes&destination=Monaco+Ville&waypoints=Eze+Village+France|Oceanographic+Museum+of+Monaco&travelmode=transit",
+        points: [
+          { name: "5 Avenue Gazan", note: "昂蒂布住所出发", x: 70, y: 27 },
+          { name: "Eze Village", note: "午前古村", x: 91, y: 19 },
+          { name: "Oceanographic Museum", note: "下午主景点", x: 96, y: 17 },
+          { name: "Monaco Ville", note: "老城晚餐", x: 94, y: 20 }
+        ]
+      },
+      {
+        id: "map-d7",
+        label: "10.6",
+        title: "Day 7｜尼斯城市散步",
+        summary: "尼斯这天是从车站、老城、城堡山一路走到海边再进机场的长收尾。",
+        mapType: "riviera",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Nice+Ville+Station&destination=Nice+C%C3%B4te+d%27Azur+Airport+Terminal+1&waypoints=Basilique+Notre-Dame+de+Nice|Vieux+Nice|Colline+du+Ch%C3%A2teau+Nice|Promenade+des+Anglais+Nice&travelmode=walking",
+        points: [
+          { name: "Nice Ville", note: "进城起点", x: 84, y: 24 },
+          { name: "Notre-Dame de Nice", note: "上午第一站", x: 82, y: 22 },
+          { name: "Vieux Nice", note: "老城主段", x: 87, y: 25 },
+          { name: "Colline du Chateau", note: "观景台", x: 90, y: 22 },
+          { name: "Promenade des Anglais", note: "日落海边", x: 83, y: 31 },
+          { name: "Nice Airport T1", note: "夜宿机场", x: 77, y: 30 }
+        ]
+      },
+      {
+        id: "map-d8",
+        label: "10.7",
+        title: "Day 8｜返程航班落点",
+        summary: "清晨从尼斯起飞，经慕尼黑转机，再进入夜航返沪的长线段。",
+        mapType: "wide",
+        googleUrl: "https://www.google.com/maps/dir/?api=1&origin=Nice+C%C3%B4te+d%27Azur+Airport+Terminal+1&destination=Shanghai+Pudong+International+Airport+Terminal+2&waypoints=Munich+Airport+Terminal+2&travelmode=driving",
+        points: [
+          { name: "Nice Airport T1", note: "LH2277 起点", x: 49, y: 33 },
+          { name: "Munich Airport T2", note: "德国转机", x: 54, y: 16 },
+          { name: "Shanghai Pudong T2", note: "次日清晨抵达", x: 88, y: 43 }
+        ]
+      }
+    ];
+
+    const defaultTimelineDays = [
+      {
+        id: "day-0",
+        key: "flight",
+        date: "2026-09-29",
+        city: "Shanghai + Beijing + Paris",
+        title: "Day 0｜上海出发 / 北京转机 / 夜航巴黎",
+        theme: "把这一晚视作纯位移夜，核心目标是稳稳完成值机、托运和转机。",
+        badge: "航班段",
+        notes: ["去程为北京转机", "跨时区节点以当地时间执行", "把 PNR 和护照信息留在线下票夹"],
+        events: [
+          {
+            time: "21:30 - 23:55",
+            title: "CA1510｜上海虹桥 T2 → 北京首都 T3",
+            detail: "晚间从上海出发飞北京，落地后进入国际段转机流程，重点看行李是否直挂与下一程登机口。",
+            meta: ["经济舱", "SHA → PEK", "建议至少提前 2 小时到机场"]
+          },
+          {
+            time: "01:55 - 06:25",
+            title: "CA875｜北京首都 T3 → 巴黎戴高乐 T1",
+            detail: "凌晨从北京飞巴黎，抵达后直接衔接 9 月 30 日的 CDG 入境与进城流程。",
+            meta: ["经济舱", "PEK → CDG", "落地后直接进入 Day 1"]
+          }
+        ]
+      },
+      {
+        id: "day-1",
+        key: "paris",
+        date: "2026-09-30",
+        city: "Paris",
+        title: "Day 1｜落地休整 / 拉丁区复古漫步 / 塞纳河夕阳游船",
+        theme: "低消耗、零排队、适应时差。把第一天留给左岸慢逛和水上日落。",
+        badge: "巴黎段",
+        notes: ["落地日尽量只保留一条直线动线", "新桥码头建议提前 5 分钟到位", "晚餐后地铁 7 号线直返酒店"],
+        events: [
+          {
+            time: "06:30 - 13:00",
+            title: "CDG 入境与前往 Oden Paris Ivry",
+            detail: "戴高乐机场入境后乘 RER B 到 Saint-Michel，再换 RER C 到 Ivry-sur-Seine，先办理入住与休息。",
+            meta: ["约 65 分钟", "€11.80 / 人", "Aeroport CDG → Saint-Michel → Ivry-sur-Seine"]
+          },
+          {
+            time: "13:00 - 13:30",
+            title: "前往拉丁区",
+            detail: "从酒店步行到 Ivry-sur-Seine 站，搭乘 RER C 到 Saint-Michel，再转 RER B 到 Luxembourg。",
+            meta: ["约 25 分钟", "€2.15 / 人", "适合作为午餐前轻移动"]
+          },
+          {
+            time: "13:30 - 14:30",
+            title: "卢森堡公园周边午餐",
+            detail: "选择 Bistro 或咖啡馆，控制节奏，不把第一顿安排成排队餐厅。",
+            meta: ["预算灵活", "建议靠近公园入口", "午饭后直接散步"]
+          },
+          {
+            time: "14:30 - 16:00",
+            title: "卢森堡公园",
+            detail: "饭后在中央喷泉附近找绿色铁椅坐一会儿，让身体和节奏一起缓下来。",
+            meta: ["免费", "餐厅步行约 3 分钟", "适合时差恢复"]
+          },
+          {
+            time: "16:00 - 17:00",
+            title: "先贤祠外围与圣热内维耶瓦图书馆",
+            detail: "向东步行 500 米，打卡新古典主义建筑群与《午夜巴黎》氛围段落。",
+            meta: ["全程步行", "约 8 分钟", "外观游览"]
+          },
+          {
+            time: "17:00 - 18:15",
+            title: "莎士比亚书店与塞纳河古旧书摊",
+            detail: "沿坡路回到河畔，在 René Viviani 公园一带看书店外观与绿色木箱书摊。",
+            meta: ["全程步行", "约 10 分钟", "黄金时段很适合拍照"]
+          },
+          {
+            time: "18:15 - 19:15",
+            title: "西岱岛外围与圣母院广场",
+            detail: "跨桥进西岱岛，绕圣母院外围散步，再慢慢走到新桥一带等上船。",
+            meta: ["全程步行", "约 10 分钟", "游船前衔接自然"]
+          },
+          {
+            time: "19:30 - 20:30",
+            title: "Vedettes du Pont Neuf 夕阳游船",
+            detail: "在新桥头码头登船，看 19:25 前后的金色时刻和两岸夜景切换。",
+            meta: ["€15-17 / 人", "19:25 前后日落", "建议预留排队时间"]
+          },
+          {
+            time: "20:30 - 21:00",
+            title: "晚餐与返程",
+            detail: "码头附近简单晚餐后，从 Pont Neuf 一带乘地铁 7 号线回到 Mairie d'Ivry。",
+            meta: ["约 25 分钟", "€2.15 / 人", "回酒店早休息"]
+          }
+        ]
+      },
+      {
+        id: "day-2",
+        key: "paris",
+        date: "2026-10-01",
+        city: "Paris",
+        title: "Day 2｜卢浮宫艺术深度 / 莫奈睡莲 / 哥特彩绘玻璃",
+        theme: "按城市肌理从西向东推进，把最重的艺术馆放在体力最完整的一天。",
+        badge: "巴黎段",
+        notes: ["当天人流高，卢浮宫务必提前 20 分钟到", "橘园和圣礼拜堂都建议保留预约缓冲", "走路串联比频繁进地铁更顺"],
+        events: [
+          {
+            time: "08:15 - 08:50",
+            title: "前往卢浮宫",
+            detail: "从 Mairie d'Ivry 站搭乘地铁 7 号线直达 Palais Royal - Musee du Louvre。",
+            meta: ["约 35 分钟", "€2.15 / 人", "直达最省心"]
+          },
+          {
+            time: "09:00 - 12:30",
+            title: "卢浮宫博物馆",
+            detail: "以三宝和古典雕塑馆为主，不追求一口气看完，避免在馆内被动暴走。",
+            meta: ["€22 / 人", "预约票入场", "国庆假期人流高"]
+          },
+          {
+            time: "12:30 - 13:30",
+            title: "杜乐丽花园周边午餐",
+            detail: "出馆后在花园内或附近街区吃饭，让上午的高密度观展有一个缓冲点。",
+            meta: ["建议 1 小时", "露天餐厅优先", "离橘园近"]
+          },
+          {
+            time: "13:30 - 15:30",
+            title: "杜乐丽花园与橘园美术馆",
+            detail: "穿过花园进入橘园，把莫奈《睡莲》作为午后节奏转换点。",
+            meta: ["步行约 15 分钟", "橘园 €14 / 人", "睡莲厅值得放慢"]
+          },
+          {
+            time: "15:30 - 18:00",
+            title: "圣礼拜堂",
+            detail: "沿塞纳河往回走到西岱岛，重点看 13 世纪彩绘玻璃和垂直空间感。",
+            meta: ["步行约 20 分钟", "可备选地铁 1 号线", "门票约 €13 / 人"]
+          },
+          {
+            time: "18:00 - 20:30",
+            title: "西岱岛 / 拉丁区晚餐与返程",
+            detail: "晚餐放在河岸周边，20:30 左右经 Cité → Châtelet → Mairie d'Ivry 回酒店。",
+            meta: ["约 30 分钟", "€2.15 / 人", "第二天继续早起轻装"]
+          }
+        ]
+      },
+      {
+        id: "day-3",
+        key: "paris",
+        date: "2026-10-02",
+        city: "Paris",
+        title: "Day 3｜换酒店 / 蒙马特高地 / 歌剧院 / 凯旋门日落",
+        theme: "高空俯瞰、经典建筑和黄金时刻压轴的一天。",
+        badge: "巴黎段",
+        notes: ["换酒店时带大件行李建议打车", "凯旋门登顶把 19:00-19:40 留给平台", "20:00 整点铁塔闪灯可顺便看"],
+        events: [
+          {
+            time: "09:00 - 09:30",
+            title: "退房、转移行李到 ibis",
+            detail: "从 Oden Paris Ivry 退房后把大件行李直接打车转移到 ibis Paris Porte D'Orleans 寄存。",
+            meta: ["约 20 分钟车程", "€18-25 / 车", "换酒店尽量一次完成"]
+          },
+          {
+            time: "10:00 - 12:30",
+            title: "蒙马特高地",
+            detail: "从 Porte d'Orleans 站乘地铁 4 号线到 Anvers，上山游览圣心堂、小丘广场与爱墙。",
+            meta: ["约 30 分钟", "€2.15 / 人", "上午光线适合俯瞰"]
+          },
+          {
+            time: "12:30 - 13:30",
+            title: "Pigalle 一带午餐",
+            detail: "避开山顶拥挤餐厅，在山脚或 Pigalle 区域吃饭更舒适。",
+            meta: ["建议 1 小时", "预算灵活", "保留午后体力"]
+          },
+          {
+            time: "13:30 - 16:30",
+            title: "加尼叶歌剧院与老佛爷露台",
+            detail: "Pigalle 乘 12 号线到 Saint-Lazare，步行到歌剧院，出馆后顺路去老佛爷顶层露台。",
+            meta: ["地铁 €2.15 / 人", "歌剧院 €15 / 人", "露台免费"]
+          },
+          {
+            time: "16:30 - 17:00",
+            title: "前往凯旋门",
+            detail: "从 Auber 乘 RER A 一站到 Charles de Gaulle - Etoile，减少地面折返。",
+            meta: ["约 12 分钟", "€2.15 / 人", "一站快切到核心点位"]
+          },
+          {
+            time: "17:30 - 19:40",
+            title: "凯旋门登顶与日落",
+            detail: "把傍晚整块时间留给登顶与观景。19:25 左右看金色落日，20:00 看铁塔闪灯。",
+            meta: ["门票约 €16 / 人", "核心压轴段", "建议控制下山后晚餐距离"]
+          },
+          {
+            time: "19:40 - 20:30",
+            title: "香街晚餐与返程",
+            detail: "香榭丽舍附近晚餐后，从 Charles de Gaulle - Etoile 经 6 号线 + 4 号线回酒店。",
+            meta: ["约 25 分钟", "€2.15 / 人", "第二天早起赶火车"]
+          }
+        ]
+      },
+      {
+        id: "day-4",
+        key: "transfer",
+        date: "2026-10-03",
+        city: "Paris + Marseille + Antibes",
+        title: "Day 4｜退房上 TGV / 抵达马赛 / 接驳昂蒂布",
+        theme: "这一天的确定部分只有巴黎到马赛，后半段需要按你补充的接驳方案执行。",
+        badge: "转场段",
+        notes: ["2026-10-03 实际为周六", "最新票面已改为 Marseille", "马赛到昂蒂布车次仍待补齐"],
+        events: [
+          {
+            time: "08:30 - 10:30",
+            title: "ibis 早餐与退房",
+            detail: "在酒店吃早餐并完成退房，因为火车改到下午出发，这天上午会比原计划宽松许多。",
+            meta: ["建议退房后轻装活动", "所有票据放手边", "房间内不要留充电器"]
+          },
+          {
+            time: "12:50 - 13:30",
+            title: "前往 Paris Gare de Lyon",
+            detail: "从 Porte d'Orleans 站出发去 Paris Gare de Lyon，按下午车次重排，不需要再按上午 10 点前赶站。",
+            meta: ["约 30 分钟", "€2.15 / 人", "到站后直接看检票屏"]
+          },
+          {
+            time: "13:30 - 14:10",
+            title: "安检与候车",
+            detail: "预留 40 分钟缓冲，确认 Voiture 13 Haut 的上车位置，避免站台临时变更带来的慌乱。",
+            meta: ["Voiture 13 Haut", "Place 351", "1 等座"]
+          },
+          {
+            time: "14:10 - 17:14",
+            title: "TGV 6177｜Paris Gare de Lyon → Marseille Saint-Charles",
+            detail: "这张新票已经明确把巴黎南下改成马赛。车程约 3 小时 04 分，到站后再衔接去昂蒂布的后半段。",
+            meta: ["预计 17:14 抵达", "票面 €62", "当天确定性最高的一段"]
+          },
+          {
+            time: "17:20 以后",
+            title: "Marseille Saint-Charles → Antibes 接驳待确认",
+            detail: "你目前给到的票面只确认到马赛。建议出发前补一段 TER/TGV 或打车方案，页面暂不再假设 Nice Ville 接驳。",
+            meta: ["后半段未锁定", "优先补齐车次", "再决定是否还能保留晚间散步"]
+          },
+          {
+            time: "晚间",
+            title: "抵达昂蒂布后入住",
+            detail: "以顺利入住 5 Avenue Gazan 为优先。如果实际到得较晚，这一晚只保留简单晚餐和休息即可。",
+            meta: ["不再默认能逛老城", "视接驳耗时调整", "为次日海岸徒步储备状态"]
+          }
+        ]
+      },
+      {
+        id: "day-5",
+        key: "riviera",
+        date: "2026-10-04",
+        city: "Antibes",
+        title: "Day 5｜昂蒂布市集 / 古董市集 / Cap d'Antibes 海岸线 / 毕加索博物馆",
+        theme: "把海岸线徒步和老城文化点位压进同一条顺时针动线。",
+        badge: "南法段",
+        notes: ["海风大，鞋子要抓地", "若徒步封闭就改老城慢走", "Picasso Museum 午休后再进馆更稳"],
+        events: [
+          {
+            time: "07:45 - 09:00",
+            title: "酒店出发与普罗旺斯市集",
+            detail: "步行去 Marché Provençal，先把上午最有在地感的一段逛完。",
+            meta: ["Cours Massena", "通常 07:00-13:00", "适合买轻早餐"]
+          },
+          {
+            time: "09:00 - 09:35",
+            title: "Place Nationale 古董市集",
+            detail: "继续走到古董市集快速浏览，如果摊位状态好可多停留 10 分钟。",
+            meta: ["建议以当日摊位状态为准", "老城氛围点", "不宜拖太久"]
+          },
+          {
+            time: "09:35 - 10:25",
+            title: "前往 Fontaine 与补给",
+            detail: "步行到 Guillabert 站，乘 Envibus 2 路到 Fontaine，顺手在 Spar 补水和零食。",
+            meta: ["公交约 €2 / 人", "补给后再走海岸", "避免中途无店可买"]
+          },
+          {
+            time: "10:25 - 12:45",
+            title: "Cap d'Antibes 海岸线徒步",
+            detail: "徒步约 6 公里，含拍照和短休息。若遇封路，缩成 4-5 公里也完全合理。",
+            meta: ["约 2-2.5 小时", "看海崖和岩岸", "徒步强度当天最高"]
+          },
+          {
+            time: "12:45 - 14:15",
+            title: "返回老城与午餐",
+            detail: "乘 2 路回昂蒂布，老城午餐把体力从徒步模式切回慢节奏。",
+            meta: ["公交约 €2 / 人", "午餐预算 €15-25 / 人", "候车时间可能偏长"]
+          },
+          {
+            time: "14:15 - 15:45",
+            title: "毕加索博物馆",
+            detail: "午休后进馆，节奏会更舒服。重点看海边格里马尔迪城堡中的作品与空间。",
+            meta: ["成人票约 €12", "通常 14:00-18:00", "周一闭馆"]
+          },
+          {
+            time: "15:45 - 17:15",
+            title: "城墙、Port Vauban 与 La Salis",
+            detail: "出馆看城墙和港口，再去 La Salis 找回望老城的莫奈视角，随后步行回酒店。",
+            meta: ["海边散步段", "适合日落前光线", "17:15 左右返程"]
+          }
+        ]
+      },
+      {
+        id: "day-6",
+        key: "riviera",
+        date: "2026-10-05",
+        city: "Eze + Monaco",
+        title: "Day 6｜埃兹古村 / 摩纳哥海洋馆 / 摩纳哥老城",
+        theme: "这一日的重点不是暴走，而是把山顶古村与海边城邦做成高低对照。",
+        badge: "南法段",
+        notes: ["公交若久等，删港口长步行", "Monaco 站到老城爬升明显", "海洋馆建议提前买票"],
+        events: [
+          {
+            time: "09:45 - 10:10",
+            title: "从酒店前往 Antibes 车站",
+            detail: "步行去车站，预留一点余量，避免因为买票或站台变化影响后续公交接驳。",
+            meta: ["轻装出发", "站内看 Monaco 方向班次", "建议水和充电宝带齐"]
+          },
+          {
+            time: "10:10 - 11:00",
+            title: "TER 前往 Monaco",
+            detail: "乘 TER 到 Monaco-Monte-Carlo，车程 45-50 分钟，抵达后转 82 路上山去 Eze Village。",
+            meta: ["单程 €7-9 / 人", "沿海段风景很好", "别坐过站"]
+          },
+          {
+            time: "11:00 - 13:15",
+            title: "Eze Village 古村游览",
+            detail: "82 路上山后慢慢逛石巷、教堂、古堡遗迹和海景，不追求打卡密度。",
+            meta: ["免费", "山上高低差明显", "11:30-13:15 为主段"]
+          },
+          {
+            time: "13:15 - 14:00",
+            title: "埃兹午餐",
+            detail: "把午饭放在古村里，休息后再回摩纳哥，避免把上下山压得太满。",
+            meta: ["预算 €15-25 / 人", "景观位可提前看", "用餐结束后返程"]
+          },
+          {
+            time: "14:45 - 16:45",
+            title: "摩纳哥海洋学博物馆",
+            detail: "回到摩纳哥后直奔海洋馆，把这段作为全天唯一的完整室内主景点。",
+            meta: ["€19-22 / 人", "通常 10:00-18:00", "建议提前线上购票"]
+          },
+          {
+            time: "16:45 - 19:30",
+            title: "摩纳哥老城、王宫广场、主教座堂与晚餐",
+            detail: "以老城街区、外观和海边视角为主，不加王宫内部参观，晚餐后准备回 Antibes。",
+            meta: ["预算 €20-35 / 人", "建议 20:00 左右返程", "最好不要晚于 20:30 离开"]
+          }
+        ]
+      },
+      {
+        id: "day-7",
+        key: "riviera",
+        date: "2026-10-06",
+        city: "Nice",
+        title: "Day 7｜尼斯老城 / 城堡山 / 天使湾日落 / 机场过夜",
+        theme: "把最后一个整天留给城市散步和早晚光线，不在下午后段硬塞新景点。",
+        badge: "南法段",
+        notes: ["若酒店不能寄存，直接带行李去 Nice", "天使湾日落约 18:50", "20:00 前到机场最稳"],
+        events: [
+          {
+            time: "09:00 - 10:00",
+            title: "退房并前往 Nice Ville",
+            detail: "先确认酒店是否可寄存行李，再从 Antibes 车站乘 TER 去 Nice Ville。",
+            meta: ["约 25-30 分钟", "€5-7 / 人", "寄存不行就直接带走"]
+          },
+          {
+            time: "10:00 - 10:30",
+            title: "尼斯圣母殿",
+            detail: "先看离车站近的核心地标，免费且适合作为进入老城前的节奏起点。",
+            meta: ["通常 08:30-19:00", "免费", "弥撒期间可能限流"]
+          },
+          {
+            time: "10:30 - 13:00",
+            title: "尼斯老城与 Cours Saleya 午餐",
+            detail: "穿过老城街巷到萨莱亚广场，周二通常仍有市集，可顺带解决午餐。",
+            meta: ["老城适合慢逛", "午餐 12:00 左右", "10 月 6 日是周二"]
+          },
+          {
+            time: "13:00 - 16:30",
+            title: "城堡山与周边休息拍照",
+            detail: "把城堡山的观景、瀑布和港口视角集中在午后前段，之后慢慢往海边退。",
+            meta: ["通常 08:30-18:00", "观景强度高", "15:00 后转入休息拍照"]
+          },
+          {
+            time: "16:30 - 18:55",
+            title: "Promenade des Anglais 与天使湾日落",
+            detail: "沿英格兰人大道慢走，把 18:20-18:55 留给天使湾的最后一段日落。",
+            meta: ["日落约 18:50", "很适合收尾", "不要压缩机场转移时间"]
+          },
+          {
+            time: "19:00 - 20:00",
+            title: "电车去 Nice Airport 并准备过夜",
+            detail: "乘 L2/L3 去机场，确认航站楼后进入夜间模式，准备薄外套、眼罩和充电宝。",
+            meta: ["€1.70-2 / 人", "约 30-40 分钟", "尽量 20:00 前到"]
+          }
+        ]
+      },
+      {
+        id: "day-8",
+        key: "flight",
+        date: "2026-10-07",
+        city: "Nice + Munich",
+        title: "Day 8｜尼斯起飞 / 慕尼黑转机 / 夜航返沪",
+        theme: "这天是完整的返程执行日，重点是尼斯清晨起飞和慕尼黑中转不要失误。",
+        badge: "航班段",
+        notes: ["前一晚就确认 Nice T1", "慕尼黑转机在 T2", "液体与充电设备前夜整理好"],
+        events: [
+          {
+            time: "04:00 - 06:05",
+            title: "机场清晨准备与登机",
+            detail: "在尼斯机场完成清晨安检和值机，把这段当成纯执行段，不再临时加任何移动。",
+            meta: ["夜宿机场后直接转执行", "Nice Airport T1", "建议预留安检排队"]
+          },
+          {
+            time: "06:05 - 07:30",
+            title: "LH2277｜Nice T1 → Munich T2",
+            detail: "从尼斯飞慕尼黑，落地后进入同日中转流程，重点看下一程登机口和转机动线。",
+            meta: ["经济舱", "NCE → MUC", "德国境内转机"]
+          },
+          {
+            time: "12:10 - 次日 05:10",
+            title: "CA828｜Munich T2 → Shanghai Pudong T2",
+            detail: "中午从慕尼黑起飞，次日清晨抵达上海浦东，正式收束这次巴黎到南法的长线行程。",
+            meta: ["经济舱", "MUC → PVG", "票面显示 05:10 +1 抵达"]
+          }
+        ]
+      },
+      {
+        id: "day-9",
+        key: "flight",
+        date: "2026-10-08",
+        city: "Shanghai",
+        title: "Day 9｜抵达上海",
+        theme: "最后一天只保留落地和回家，不再安排额外事项。",
+        badge: "航班段",
+        notes: ["05:10 +1 为票面到达时间", "落地后先处理通讯与交通", "回程日强度最低"],
+        events: [
+          {
+            time: "05:10 以后",
+            title: "上海浦东落地与返家",
+            detail: "在浦东机场完成入境、取行李与回程交通，这份手册到这里正式完成闭环。",
+            meta: ["Shanghai Pudong T2", "次日清晨落地", "建议提前想好回家方案"]
+          }
+        ]
+      }
+    ];
+
+    const baseTabOptions = [
+      { key: "all", label: "全部" },
+      { key: "flight", label: "航班" },
+      { key: "paris", label: "巴黎" },
+      { key: "transfer", label: "转场" },
+      { key: "riviera", label: "南法" }
+    ];
+
+    const weekdayFormatter = new Intl.DateTimeFormat("zh-CN", {
+      weekday: "short",
+      month: "numeric",
+      day: "numeric",
+      timeZone: "Europe/Paris"
+    });
+
+    const countdownEl = document.getElementById("countdown");
+    const countdownSubEl = document.getElementById("countdownSub");
+    const nextEventCardEl = document.getElementById("nextEventCard");
+    let attachmentDbPromise = null;
+    const VOUCHERS_STORAGE_KEY = "trip-vouchers-state-v1";
+    const FARES_STORAGE_KEY = "trip-fares-state-v1";
+    const CHECKS_STORAGE_KEY = "trip-checks-state-v1";
+    const TIMELINE_STORAGE_KEY = "trip-timeline-state-v1";
+    const MAP_STORAGE_KEY = "trip-map-state-v1";
+    let vouchersState = [];
+    let faresState = [];
+    let checksState = [];
+    let timelineDaysState = [];
+    let mapDaysState = [];
+    let currentTimelineFilter = "all";
+    let currentMapDayId = "";
+    let dragState = null;
+    const editModes = {
+      vouchers: false,
+      fares: false,
+      checks: false,
+      timeline: false,
+      map: false
+    };
+    const daySubtabsEl = document.getElementById("daySubtabs");
+    const mapDayTabsEl = document.getElementById("mapDayTabs");
+    const tripMapSvgEl = document.getElementById("tripMapSvg");
+    const mapLegendEl = document.getElementById("mapLegend");
+    const mapDayLinksEl = document.getElementById("mapDayLinks");
+    const mapTitleEl = document.getElementById("mapTitle");
+    const mapSummaryEl = document.getElementById("mapSummary");
+    const mapGoogleLinkEl = document.getElementById("mapGoogleLink");
+    const mapEmbedNoteEl = document.getElementById("mapEmbedNote");
+
+    function parseTimelineEventStart(dayDate, timeText) {
+      if (!dayDate || !timeText) return null;
+      const match = String(timeText).match(/(\d{1,2}):(\d{2})/);
+      if (!match) return null;
+      const hours = String(match[1]).padStart(2, "0");
+      const minutes = String(match[2]).padStart(2, "0");
+      const nextDay = /次日|\+1/.test(String(timeText));
+      const baseDate = new Date(`${dayDate}T12:00:00+02:00`);
+      if (Number.isNaN(baseDate.getTime())) return null;
+      if (nextDay) baseDate.setDate(baseDate.getDate() + 1);
+      const yyyy = baseDate.getFullYear();
+      const mm = String(baseDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(baseDate.getDate()).padStart(2, "0");
+      return new Date(`${yyyy}-${mm}-${dd}T${hours}:${minutes}:00+02:00`);
+    }
+
+    function getAnchorEvents() {
+      return timelineDaysState
+        .flatMap((day) => day.events.map((event) => {
+          const date = parseTimelineEventStart(day.date, event.time);
+          if (!date) return null;
+          return {
+            date,
+            title: event.title || day.title || "未命名事件",
+            place: day.city || getKeyLabel(day.key),
+            timeZone: "Europe/Paris"
+          };
+        }))
+        .filter(Boolean)
+        .sort((a, b) => a.date - b.date);
+    }
+
+    function getVoucherBucket(id) {
+      return `voucher:${id}`;
+    }
+
+    function getFareBucket(id) {
+      return `fare:${id}`;
+    }
+
+    function getAttachmentListEl(bucket) {
+      return document.querySelector(`[data-attachment-list="${bucket}"]`);
+    }
+
+    function getAttachmentInputEl(bucket) {
+      return document.querySelector(`[data-attachment-input="${bucket}"]`);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function generateItemId(prefix) {
+      if (globalThis.crypto?.randomUUID) {
+        return `${prefix}-${crypto.randomUUID()}`;
+      }
+      return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+    }
+
+    function normalizeChipList(chips) {
+      if (Array.isArray(chips)) {
+        return chips.map((chip) => String(chip).trim()).filter(Boolean);
+      }
+      return String(chips || "")
+        .split(/[\n,，|｜]/)
+        .map((chip) => chip.trim())
+        .filter(Boolean);
+    }
+
+    function normalizeVouchersState(items) {
+      return items.map((item, index) => ({
+        id: item.id || generateItemId(`voucher-${index}`),
+        title: String(item.title || "").trim(),
+        stay: String(item.stay || "").trim(),
+        body: String(item.body || "").trim(),
+        chips: normalizeChipList(item.chips)
+      }));
+    }
+
+    function normalizeFaresState(items) {
+      return items.map((item, index) => ({
+        id: item.id || generateItemId(`fare-${index}`),
+        label: String(item.label || "").trim(),
+        value: String(item.value || "").trim(),
+        detail: String(item.detail || "").trim()
+      }));
+    }
+
+    function normalizeChecksState(items) {
+      return items.map((item, index) => ({
+        id: item.id || generateItemId(`check-${index}`),
+        text: String(item.text || item || "").trim(),
+        note: String(item.note || "")
+      }));
+    }
+
+    function inferMapTypeFromKey(key) {
+      if (key === "paris") return "paris";
+      if (key === "riviera" || key === "transfer") return "riviera";
+      return "wide";
+    }
+
+    function formatMapLabelFromDate(date) {
+      if (!date) return "";
+      const value = new Date(`${date}T12:00:00+02:00`);
+      if (Number.isNaN(value.getTime())) return "";
+      return `${value.getMonth() + 1}.${value.getDate()}`;
+    }
+
+    function getKeyLabel(key) {
+      const preset = baseTabOptions.find((item) => item.key === key);
+      if (preset) return preset.label;
+      return String(key || "").trim() || "未命名";
+    }
+
+    function getTimelineTabOptions() {
+      const keys = [...new Set(timelineDaysState.map((day) => day.key).filter(Boolean))];
+      const known = baseTabOptions.filter((item) => item.key !== "all");
+      const knownKeys = new Set(known.map((item) => item.key));
+      const extra = keys
+        .filter((key) => !knownKeys.has(key))
+        .map((key) => ({ key, label: getKeyLabel(key) }));
+      return [baseTabOptions[0], ...known, ...extra];
+    }
+
+    function getTitleSuffix(title) {
+      const parts = String(title || "").split("｜");
+      return parts.length > 1 ? parts.slice(1).join("｜").trim() : String(title || "").trim();
+    }
+
+    function normalizeEventState(items) {
+      return (items || []).map((event, index) => ({
+        id: event.id || generateItemId(`event-${index}`),
+        time: String(event.time || "").trim(),
+        title: String(event.title || "").trim(),
+        detail: String(event.detail || "").trim(),
+        meta: Array.isArray(event.meta) ? event.meta.map((item) => String(item).trim()).filter(Boolean) : []
+      }));
+    }
+
+    function normalizePointState(items) {
+      return (items || []).map((point, index) => ({
+        id: point.id || generateItemId(`point-${index}`),
+        name: String(point.name || "").trim(),
+        note: String(point.note || "").trim(),
+        x: Number.isFinite(point.x) ? point.x : (22 + index * 12),
+        y: Number.isFinite(point.y) ? point.y : (24 + (index % 3) * 8)
+      }));
+    }
+
+    function normalizeTimelineDaysState(items) {
+      return (items || []).map((day, index) => ({
+        id: day.id || generateItemId(`day-${index}`),
+        tripId: day.tripId || generateItemId(`trip-${index}`),
+        key: String(day.key || "transfer").trim(),
+        date: String(day.date || "").trim(),
+        city: String(day.city || "").trim(),
+        title: String(day.title || "").trim(),
+        theme: String(day.theme || "").trim(),
+        badge: String(day.badge || "").trim(),
+        notes: Array.isArray(day.notes) ? day.notes.map((item) => String(item).trim()).filter(Boolean) : [],
+        events: normalizeEventState(day.events)
+      }));
+    }
+
+    function normalizeMapDaysState(items) {
+      return (items || []).map((day, index) => ({
+        id: day.id || generateItemId(`map-${index}`),
+        tripId: day.tripId || generateItemId(`trip-map-${index}`),
+        label: String(day.label || "").trim(),
+        title: String(day.title || "").trim(),
+        summary: String(day.summary || "").trim(),
+        mapType: String(day.mapType || "wide").trim(),
+        points: normalizePointState(day.points)
+      }));
+    }
+
+    function migrateMapDaysState(items) {
+      return items.map((day) => {
+        if (day.label !== "10.5") return day;
+        return {
+          ...day,
+          points: day.points.map((point, index) => {
+            if (index !== 0) return point;
+            if (point.name === "Antibes" && point.note === "早上出发") {
+              return {
+                ...point,
+                name: "5 Avenue Gazan",
+                note: "昂蒂布住所出发"
+              };
+            }
+            return point;
+          })
+        };
+      });
+    }
+
+    function buildDefaultTimelineDays() {
+      return normalizeTimelineDaysState(defaultTimelineDays.map((day, index) => ({
+        ...day,
+        tripId: `trip-default-${index}`
+      })));
+    }
+
+    function buildDefaultMapDays() {
+      return normalizeMapDaysState(defaultMapDays.map((day, index) => ({
+        ...day,
+        tripId: `trip-default-${index}`
+      })));
+    }
+
+    function resequenceTimelineAndMap() {
+      timelineDaysState = timelineDaysState.map((day, index) => {
+        const dateLabel = formatMapLabelFromDate(day.date) || `${index + 1}`;
+        const suffix = getTitleSuffix(day.title);
+        return {
+          ...day,
+          id: `day-${index}`,
+          title: suffix ? `${dateLabel}｜${suffix}` : dateLabel,
+          badge: day.badge || getKeyLabel(day.key)
+        };
+      });
+
+      mapDaysState = timelineDaysState.map((day, index) => {
+        const existing = mapDaysState.find((item) => item.tripId === day.tripId) || {};
+        const dateLabel = formatMapLabelFromDate(day.date) || `${index + 1}`;
+        const suffix = getTitleSuffix(existing.title || day.title);
+        return {
+          id: `map-d${index}`,
+          tripId: day.tripId,
+          label: formatMapLabelFromDate(day.date) || existing.label || "",
+          title: suffix ? `${dateLabel}｜${suffix}` : dateLabel,
+          summary: existing.summary || "",
+          mapType: existing.mapType || inferMapTypeFromKey(day.key),
+          points: normalizePointState(existing.points)
+        };
+      });
+    }
+
+    function loadTimelineState() {
+      try {
+        const raw = localStorage.getItem(TIMELINE_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            timelineDaysState = normalizeTimelineDaysState(parsed);
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("load timeline failed", error);
+      }
+      timelineDaysState = buildDefaultTimelineDays();
+    }
+
+    function persistTimelineState() {
+      try {
+        localStorage.setItem(TIMELINE_STORAGE_KEY, JSON.stringify(timelineDaysState));
+      } catch (error) {
+        console.warn("save timeline failed", error);
+      }
+    }
+
+    function loadMapState() {
+      try {
+        const raw = localStorage.getItem(MAP_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            mapDaysState = migrateMapDaysState(normalizeMapDaysState(parsed));
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("load map failed", error);
+      }
+      mapDaysState = migrateMapDaysState(buildDefaultMapDays());
+    }
+
+    function persistMapState() {
+      try {
+        localStorage.setItem(MAP_STORAGE_KEY, JSON.stringify(mapDaysState));
+      } catch (error) {
+        console.warn("save map failed", error);
+      }
+    }
+
+    function syncMapStateWithTimeline() {
+      const activeTripId = mapDaysState.find((day) => day.id === currentMapDayId)?.tripId || "";
+      resequenceTimelineAndMap();
+      persistTimelineState();
+      persistMapState();
+      currentMapDayId = mapDaysState.find((day) => day.tripId === activeTripId)?.id || mapDaysState[0]?.id || "";
+    }
+
+    function loadVouchersState() {
+      try {
+        const raw = localStorage.getItem(VOUCHERS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            vouchersState = normalizeVouchersState(parsed);
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("load vouchers failed", error);
+      }
+      vouchersState = normalizeVouchersState(defaultVouchers);
+    }
+
+    function persistVouchersState() {
+      try {
+        localStorage.setItem(VOUCHERS_STORAGE_KEY, JSON.stringify(vouchersState));
+      } catch (error) {
+        console.warn("save vouchers failed", error);
+      }
+    }
+
+    function loadFaresState() {
+      try {
+        const raw = localStorage.getItem(FARES_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            faresState = normalizeFaresState(parsed);
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("load fares failed", error);
+      }
+      faresState = normalizeFaresState(defaultFares);
+    }
+
+    function persistFaresState() {
+      try {
+        localStorage.setItem(FARES_STORAGE_KEY, JSON.stringify(faresState));
+      } catch (error) {
+        console.warn("save fares failed", error);
+      }
+    }
+
+    function createAttachmentMarkup(bucket, label, extraActions = "") {
+      const inputId = `attachment-${bucket.replace(/[^a-z0-9_-]/gi, "-")}`;
+      return `
+        <div class="item-attachments" data-attachment-bucket="${bucket}">
+          <div class="attachment-list" data-attachment-list="${bucket}"></div>
+          <div class="item-footer">
+            <input class="visually-hidden" id="${inputId}" type="file" multiple data-attachment-input="${bucket}">
+            <button class="attachment-upload item-action" type="button" data-upload-bucket="${bucket}" aria-label="上传${escapeHtml(label)}附件">上传</button>
+            ${extraActions}
+          </div>
+        </div>
+      `;
+    }
+
+    function createChipBarMarkup(scope, items, ownerAttrs, addLabel = "新增标签") {
+      const attrString = Object.entries(ownerAttrs)
+        .map(([key, value]) => `data-${key}="${escapeHtml(value)}"`)
+        .join(" ");
+      const chips = items.map((chip, index) => `
+        <span class="chip chip-item" draggable="true" data-chip-scope="${scope}" data-chip-index="${index}" ${attrString}>
+          <span class="chip-label inline-editable${chip ? "" : " is-empty"}" data-empty-label="点击填写标签" data-chip-edit="${scope}" data-chip-index="${index}" ${attrString}>${escapeHtml(chip)}</span>
+          <button class="chip-remove" type="button" data-chip-delete="${scope}" data-chip-index="${index}" ${attrString} aria-label="删除标签">×</button>
+        </span>
+      `).join("");
+      return `
+        <div class="chip-list" data-chip-list="${scope}" ${attrString}>
+          ${chips}
+          <button class="item-action chip-add" type="button" data-chip-add="${scope}" ${attrString}>${escapeHtml(addLabel)}</button>
+        </div>
+      `;
+    }
+
+    function createVoucherMarkup(item) {
+      const chips = normalizeChipList(item.chips);
+      const titleClass = item.title ? "" : " is-empty";
+      const stayClass = item.stay ? "" : " is-empty";
+      const bodyClass = item.body ? "" : " is-empty";
+      return `
+        <article class="voucher-item" data-voucher-id="${item.id}" data-sort-kind="voucher" data-sort-id="${item.id}" draggable="true">
+          <h3 class="inline-editable inline-editable-hint${titleClass}" data-empty-label="点击填写标题" data-voucher-field="title" data-voucher-id="${item.id}" title="点击修改">${escapeHtml(item.title)}</h3>
+          <div class="muted inline-editable inline-editable-hint${stayClass}" data-empty-label="点击填写日期说明" data-voucher-field="stay" data-voucher-id="${item.id}" title="点击修改">${escapeHtml(item.stay)}</div>
+          <p class="muted inline-editable inline-editable-hint${bodyClass}" data-empty-label="点击填写具体行程或地址" data-voucher-field="body" data-voucher-id="${item.id}" title="点击修改" style="margin: 10px 0 0;">${escapeHtml(item.body)}</p>
+          <div class="meta-line">
+            ${createChipBarMarkup("voucher", chips, { "voucher-id": item.id }, "新增气泡")}
+          </div>
+          <div class="item-edit-tools">
+            <button class="item-action" type="button" data-voucher-move="up" data-voucher-id="${item.id}">上移</button>
+            <button class="item-action" type="button" data-voucher-move="down" data-voucher-id="${item.id}">下移</button>
+          </div>
+          ${createAttachmentMarkup(getVoucherBucket(item.id), item.title, `<button class="item-action" type="button" data-voucher-action="delete" data-voucher-id="${item.id}">删除</button>`)}
+        </article>
+      `;
+    }
+
+    function createFareMarkup(item) {
+      const labelClass = item.label ? "" : " is-empty";
+      const detailClass = item.detail ? "" : " is-empty";
+      const valueClass = item.value ? "" : " is-empty";
+      return `
+        <article class="fare-item" data-fare-id="${item.id}" data-sort-kind="fare" data-sort-id="${item.id}" draggable="true">
+          <div class="fare-main">
+            <h3 class="fare-label inline-editable inline-editable-hint${labelClass}" data-empty-label="点击填写日期或项目名" data-fare-field="label" data-fare-id="${item.id}" title="点击修改">${escapeHtml(item.label)}</h3>
+            <div class="fare-detail inline-editable inline-editable-hint${detailClass}" data-empty-label="点击填写建议或说明" data-fare-field="detail" data-fare-id="${item.id}" title="点击修改">${escapeHtml(item.detail)}</div>
+            <strong class="fare-status inline-editable inline-editable-hint${valueClass}" data-empty-label="点击填写金额或状态" data-fare-field="value" data-fare-id="${item.id}" title="点击修改">${escapeHtml(item.value)}</strong>
+          </div>
+          <div class="item-edit-tools">
+            <button class="item-action" type="button" data-fare-move="up" data-fare-id="${item.id}">上移</button>
+            <button class="item-action" type="button" data-fare-move="down" data-fare-id="${item.id}">下移</button>
+          </div>
+          ${createAttachmentMarkup(getFareBucket(item.id), item.label, `<button class="item-action" type="button" data-fare-action="delete" data-fare-id="${item.id}">删除</button>`)}
+        </article>
+      `;
+    }
+
+    function loadChecksState() {
+      try {
+        const raw = localStorage.getItem(CHECKS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length) {
+            checksState = normalizeChecksState(parsed);
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("load checks failed", error);
+      }
+      checksState = normalizeChecksState(defaultChecks.map((text) => ({ text, note: "" })));
+    }
+
+    function persistChecksState() {
+      try {
+        localStorage.setItem(CHECKS_STORAGE_KEY, JSON.stringify(checksState));
+      } catch (error) {
+        console.warn("save checks failed", error);
+      }
+    }
+
+    function createCheckMarkup(item, index) {
+      const textClass = item.text ? "" : " is-empty";
+      return `
+        <article class="check-item" data-check-id="${item.id}" data-sort-kind="check" data-sort-id="${item.id}" draggable="true">
+          <div class="check-index">${index + 1}</div>
+          <div class="check-content">
+            <div class="check-text inline-editable inline-editable-hint${textClass}" data-empty-label="点击填写确认事项" data-check-field="text" data-check-id="${item.id}" title="点击修改">${escapeHtml(item.text)}</div>
+            <div class="item-edit-tools">
+              <button class="item-action" type="button" data-check-move="up" data-check-id="${item.id}">上移</button>
+              <button class="item-action" type="button" data-check-move="down" data-check-id="${item.id}">下移</button>
+            </div>
+            <div class="item-footer">
+              <button class="item-action" type="button" data-check-action="delete" data-check-id="${item.id}">删除</button>
+            </div>
+            <textarea class="check-note" data-check-note="${item.id}" placeholder="在这里写这条确认项的备注，比如已确认时间、待补材料、风险提醒...">${escapeHtml(item.note || "")}</textarea>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderVoucherSection() {
+      const voucherListEl = document.getElementById("voucherList");
+      voucherListEl.innerHTML = vouchersState.length
+        ? vouchersState.map(createVoucherMarkup).join("")
+        : `<div class="list-empty">当前还没有凭证内容，点右上角“新增”就可以补一条。</div>`;
+      vouchersState.forEach((item) => {
+        renderAttachmentList(getVoucherBucket(item.id));
+      });
+    }
+
+    function renderFareSection() {
+      const fareListEl = document.getElementById("fareList");
+      fareListEl.innerHTML = faresState.length
+        ? faresState.map(createFareMarkup).join("")
+        : `<div class="list-empty">当前还没有交通或费用项，点右上角“新增”即可补充。</div>`;
+      faresState.forEach((item) => {
+        renderAttachmentList(getFareBucket(item.id));
+      });
+    }
+
+    function renderChecks() {
+      document.getElementById("checklist").innerHTML = checksState.length
+        ? checksState.map(createCheckMarkup).join("")
+        : `<div class="list-empty">当前没有出发前确认项，点右上角“新增”可以直接补一条。</div>`;
+    }
+
+    function renderModuleModes() {
+      document.getElementById("voucherList").classList.toggle("is-editing", editModes.vouchers);
+      document.getElementById("fareList").classList.toggle("is-editing", editModes.fares);
+      document.getElementById("checklist").classList.toggle("is-editing", editModes.checks);
+      document.getElementById("timeline").classList.toggle("is-editing", editModes.timeline);
+      document.getElementById("trip-map").classList.toggle("is-editing", editModes.map);
+
+      document.getElementById("editVoucherBtn").classList.toggle("active", editModes.vouchers);
+      document.getElementById("editVoucherBtn").textContent = editModes.vouchers ? "完成" : "编辑";
+      document.getElementById("addVoucherBtn").classList.toggle("hidden", !editModes.vouchers);
+
+      document.getElementById("editFareBtn").classList.toggle("active", editModes.fares);
+      document.getElementById("editFareBtn").textContent = editModes.fares ? "完成" : "编辑";
+      document.getElementById("addFareBtn").classList.toggle("hidden", !editModes.fares);
+
+      document.getElementById("editCheckBtn").classList.toggle("active", editModes.checks);
+      document.getElementById("editCheckBtn").textContent = editModes.checks ? "完成" : "编辑";
+      document.getElementById("addCheckBtn").classList.toggle("hidden", !editModes.checks);
+
+      document.getElementById("editTimelineBtn").classList.toggle("active", editModes.timeline);
+      document.getElementById("editTimelineBtn").textContent = editModes.timeline ? "完成" : "编辑";
+      document.getElementById("addTimelineDayBtn").classList.toggle("hidden", !(editModes.timeline && currentTimelineFilter === "all"));
+
+      document.getElementById("editMapBtn").classList.toggle("active", editModes.map);
+      document.getElementById("editMapBtn").textContent = editModes.map ? "完成" : "编辑";
+      document.getElementById("addMapPointBtn").classList.toggle("hidden", !editModes.map);
+    }
+
+    function toggleEditMode(moduleKey) {
+      editModes[moduleKey] = !editModes[moduleKey];
+      renderModuleModes();
+    }
+
+    function createDayLinksMarkup(group) {
+      return group.map((link) => `<a class="map-link" href="${link.href}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`).join("");
+    }
+
+    function createEventMarkup(day, event, index) {
+      return `
+        <article class="event" data-event-id="${event.id}" data-sort-kind="event" data-sort-id="${event.id}" data-sort-parent="${day.id}" draggable="true">
+          <div class="event-time inline-editable inline-editable-hint${event.time ? "" : " is-empty"}" data-empty-label="点击填写时间" data-day-id="${day.id}" data-event-id="${event.id}" data-event-field="time">${escapeHtml(event.time)}</div>
+          <div>
+            <h4 class="inline-editable inline-editable-hint${event.title ? "" : " is-empty"}" data-empty-label="点击填写事件标题" data-day-id="${day.id}" data-event-id="${event.id}" data-event-field="title">${escapeHtml(event.title)}</h4>
+            <p class="inline-editable inline-editable-hint${event.detail ? "" : " is-empty"}" data-empty-label="点击填写事件说明" data-day-id="${day.id}" data-event-id="${event.id}" data-event-field="detail">${escapeHtml(event.detail)}</p>
+            <div class="meta-line">
+              ${createChipBarMarkup("event-meta", event.meta, { "day-id": day.id, "event-id": event.id }, "新增标签")}
+            </div>
+            <div class="item-edit-tools">
+              <button class="item-action" type="button" data-event-move="up" data-day-id="${day.id}" data-event-id="${event.id}">上移</button>
+              <button class="item-action" type="button" data-event-move="down" data-day-id="${day.id}" data-event-id="${event.id}">下移</button>
+              <button class="item-action" type="button" data-event-action="delete" data-day-id="${day.id}" data-event-id="${event.id}">删除事件</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function createDayMarkup(day) {
+      const dateCandidate = day.date ? new Date(`${day.date}T12:00:00+02:00`) : null;
+      const formattedDate = dateCandidate && !Number.isNaN(dateCandidate.getTime()) ? weekdayFormatter.format(dateCandidate) : "";
+      return `
+        <article class="day-card" id="${day.id}" data-key="${day.key}" data-sort-kind="day" data-sort-id="${day.id}" draggable="true">
+          <div class="day-head">
+            <div class="day-title-wrap">
+              <h3 class="inline-editable inline-editable-hint${day.title ? "" : " is-empty"}" data-empty-label="点击填写 Day 标题" data-day-field="title" data-day-id="${day.id}">${escapeHtml(day.title)}</h3>
+              <p><span class="inline-editable inline-editable-hint${day.date ? "" : " is-empty"}" data-empty-label="点击填写日期" data-day-field="date" data-day-id="${day.id}">${escapeHtml(formattedDate)}</span> · <span class="inline-editable inline-editable-hint${day.city ? "" : " is-empty"}" data-empty-label="点击填写城市" data-day-field="city" data-day-id="${day.id}">${escapeHtml(day.city)}</span> · <span class="inline-editable inline-editable-hint${day.theme ? "" : " is-empty"}" data-empty-label="点击填写主题" data-day-field="theme" data-day-id="${day.id}">${escapeHtml(day.theme)}</span></p>
+            </div>
+            <div class="day-badge inline-editable inline-editable-hint${day.badge ? "" : " is-empty"}" data-empty-label="点击填写标签" data-day-field="badge" data-day-id="${day.id}">${escapeHtml(day.badge)}</div>
+          </div>
+          <div class="item-edit-tools">
+            <button class="item-action" type="button" data-day-move="up" data-day-id="${day.id}">上移</button>
+            <button class="item-action" type="button" data-day-move="down" data-day-id="${day.id}">下移</button>
+            <button class="item-action" type="button" data-day-action="add-event" data-day-id="${day.id}">新增事件</button>
+            <button class="item-action" type="button" data-day-action="delete" data-day-id="${day.id}">删除日期</button>
+          </div>
+          <div class="meta-line">
+            ${createChipBarMarkup("day-note", day.notes, { "day-id": day.id }, "新增标签")}
+          </div>
+          <div class="events" style="margin-top: 16px;">
+            ${day.events.map((event, index) => createEventMarkup(day, event, index)).join("")}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderStaticSections() {
+      loadVouchersState();
+      loadFaresState();
+      loadChecksState();
+      loadTimelineState();
+      loadMapState();
+      syncMapStateWithTimeline();
+      const tabOptions = getTimelineTabOptions();
+      renderVoucherSection();
+      renderFareSection();
+      renderChecks();
+      document.getElementById("tabs").innerHTML = tabOptions.map((tab, index) => `
+        <button class="tab ${index === 0 ? "active" : ""}" type="button" data-filter="${tab.key}">${tab.label}</button>
+      `).join("");
+      document.getElementById("timelineFilters").innerHTML = tabOptions.map((tab, index) => `
+        <button class="timeline-filter ${index === 0 ? "active" : ""}" type="button" data-filter="${tab.key}">${tab.label}</button>
+      `).join("");
+      mapDayTabsEl.innerHTML = mapDaysState.map((day, index) => `
+        <button class="map-day-tab ${index === 0 ? "active" : ""}" type="button" data-map-day="${day.id}">${day.label}</button>
+      `).join("");
+      document.getElementById("timeline").innerHTML = timelineDaysState.map(createDayMarkup).join("");
+      currentMapDayId = mapDaysState[0]?.id || "";
+      renderModuleModes();
+    }
+
+    function addVoucherItem() {
+      vouchersState.unshift({
+        id: generateItemId("voucher"),
+        title: "",
+        stay: "",
+        body: "",
+        chips: []
+      });
+      persistVouchersState();
+      renderVoucherSection();
+    }
+
+    async function deleteVoucherItem(id) {
+      const target = vouchersState.find((item) => item.id === id);
+      if (!target) return;
+      const confirmed = window.confirm(`确定删除这条凭证内容吗？\n\n${target.title}`);
+      if (!confirmed) return;
+      vouchersState = vouchersState.filter((item) => item.id !== id);
+      persistVouchersState();
+      try {
+        await deleteAttachmentsByBucket(getVoucherBucket(id));
+      } catch (error) {
+        console.warn("delete voucher attachments failed", error);
+      }
+      renderVoucherSection();
+    }
+
+    function updateVoucherField(id, field) {
+      const target = vouchersState.find((item) => item.id === id);
+      if (!target) return;
+      const labels = {
+        title: "凭证标题",
+        stay: "时间或日期说明",
+        body: "具体行程或地址说明"
+      };
+      const nextValue = window.prompt(`修改${labels[field] || "内容"}`, target[field] || "");
+      if (nextValue === null) return;
+      target[field] = nextValue.trim();
+      persistVouchersState();
+      renderVoucherSection();
+    }
+
+    function addFareItem() {
+      faresState.unshift({
+        id: generateItemId("fare"),
+        label: "",
+        detail: "",
+        value: ""
+      });
+      persistFaresState();
+      renderFareSection();
+    }
+
+    async function deleteFareItem(id) {
+      const target = faresState.find((item) => item.id === id);
+      if (!target) return;
+      const confirmed = window.confirm(`确定删除这条交通或费用内容吗？\n\n${target.label}`);
+      if (!confirmed) return;
+      faresState = faresState.filter((item) => item.id !== id);
+      persistFaresState();
+      try {
+        await deleteAttachmentsByBucket(getFareBucket(id));
+      } catch (error) {
+        console.warn("delete fare attachments failed", error);
+      }
+      renderFareSection();
+    }
+
+    function updateFareField(id, field) {
+      const target = faresState.find((item) => item.id === id);
+      if (!target) return;
+      const labels = {
+        label: "日期或项目名称",
+        detail: "建议或说明",
+        value: "金额或状态"
+      };
+      const nextValue = window.prompt(`修改${labels[field] || "内容"}`, target[field] || "");
+      if (nextValue === null) return;
+      target[field] = nextValue.trim();
+      persistFaresState();
+      renderFareSection();
+    }
+
+    function updateCheckField(id) {
+      const target = checksState.find((item) => item.id === id);
+      if (!target) return;
+      const nextValue = window.prompt("修改这条确认项", target.text || "");
+      if (nextValue === null) return;
+      target.text = nextValue.trim();
+      persistChecksState();
+      renderChecks();
+    }
+
+    function addCheckItem() {
+      checksState.unshift({
+        id: generateItemId("check"),
+        text: "",
+        note: ""
+      });
+      persistChecksState();
+      renderChecks();
+    }
+
+    function moveItem(items, id, direction) {
+      const index = items.findIndex((item) => item.id === id);
+      if (index < 0) return items;
+      const nextIndex = direction === "up" ? index - 1 : index + 1;
+      if (nextIndex < 0 || nextIndex >= items.length) return items;
+      const nextItems = [...items];
+      [nextItems[index], nextItems[nextIndex]] = [nextItems[nextIndex], nextItems[index]];
+      return nextItems;
+    }
+
+    function moveVoucherItem(id, direction) {
+      vouchersState = moveItem(vouchersState, id, direction);
+      persistVouchersState();
+      renderVoucherSection();
+    }
+
+    function moveFareItem(id, direction) {
+      faresState = moveItem(faresState, id, direction);
+      persistFaresState();
+      renderFareSection();
+    }
+
+    function moveCheckItem(id, direction) {
+      checksState = moveItem(checksState, id, direction);
+      persistChecksState();
+      renderChecks();
+    }
+
+    function moveArrayItem(items, fromIndex, toIndex) {
+      if (!Array.isArray(items)) return items;
+      if (fromIndex < 0 || toIndex < 0 || fromIndex >= items.length || toIndex >= items.length) return items;
+      const nextItems = [...items];
+      const [moved] = nextItems.splice(fromIndex, 1);
+      nextItems.splice(toIndex, 0, moved);
+      return nextItems;
+    }
+
+    function getChipCollection(scope, dataset) {
+      if (scope === "voucher") {
+        const target = vouchersState.find((item) => item.id === dataset.voucherId);
+        return target ? { list: target.chips, save: () => { persistVouchersState(); renderVoucherSection(); } } : null;
+      }
+      if (scope === "day-note") {
+        const target = timelineDaysState.find((item) => item.id === dataset.dayId);
+        return target ? { list: target.notes, save: refreshTimelineAndMapViews } : null;
+      }
+      if (scope === "event-meta") {
+        const day = timelineDaysState.find((item) => item.id === dataset.dayId);
+        const target = day?.events.find((item) => item.id === dataset.eventId);
+        return target ? { list: target.meta, save: refreshTimelineAndMapViews } : null;
+      }
+      return null;
+    }
+
+    function addChip(scope, dataset) {
+      const target = getChipCollection(scope, dataset);
+      if (!target) return;
+      target.list.push("");
+      target.save();
+    }
+
+    function updateChip(scope, dataset, index) {
+      const target = getChipCollection(scope, dataset);
+      if (!target) return;
+      const currentValue = target.list[index] || "";
+      const nextValue = window.prompt("修改气泡内容", currentValue);
+      if (nextValue === null) return;
+      target.list[index] = nextValue.trim();
+      target.save();
+    }
+
+    function deleteChip(scope, dataset, index) {
+      const target = getChipCollection(scope, dataset);
+      if (!target) return;
+      target.list.splice(index, 1);
+      target.save();
+    }
+
+    function moveChip(scope, dataset, fromIndex, toIndex) {
+      const target = getChipCollection(scope, dataset);
+      if (!target) return;
+      target.list = moveArrayItem(target.list, fromIndex, toIndex);
+      if (scope === "voucher") {
+        const voucher = vouchersState.find((item) => item.id === dataset.voucherId);
+        if (voucher) voucher.chips = target.list;
+        persistVouchersState();
+        renderVoucherSection();
+        return;
+      }
+      if (scope === "day-note") {
+        const day = timelineDaysState.find((item) => item.id === dataset.dayId);
+        if (day) day.notes = target.list;
+        refreshTimelineAndMapViews();
+        return;
+      }
+      if (scope === "event-meta") {
+        const day = timelineDaysState.find((item) => item.id === dataset.dayId);
+        const event = day?.events.find((item) => item.id === dataset.eventId);
+        if (event) event.meta = target.list;
+        refreshTimelineAndMapViews();
+      }
+    }
+
+    function canDragSort(kind) {
+      if (kind === "voucher") return editModes.vouchers;
+      if (kind === "fare") return editModes.fares;
+      if (kind === "check") return editModes.checks;
+      if (kind === "day" || kind === "event" || kind === "day-note" || kind === "event-meta") return editModes.timeline;
+      if (kind === "point") return editModes.map;
+      return false;
+    }
+
+    function reorderByTarget(list, sourceId, targetId) {
+      const sourceIndex = list.findIndex((item) => item.id === sourceId);
+      const targetIndex = list.findIndex((item) => item.id === targetId);
+      if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) return list;
+      return moveArrayItem(list, sourceIndex, targetIndex);
+    }
+
+    function moveVoucherToTarget(sourceId, targetId) {
+      vouchersState = reorderByTarget(vouchersState, sourceId, targetId);
+      persistVouchersState();
+      renderVoucherSection();
+    }
+
+    function moveFareToTarget(sourceId, targetId) {
+      faresState = reorderByTarget(faresState, sourceId, targetId);
+      persistFaresState();
+      renderFareSection();
+    }
+
+    function moveCheckToTarget(sourceId, targetId) {
+      checksState = reorderByTarget(checksState, sourceId, targetId);
+      persistChecksState();
+      renderChecks();
+    }
+
+    function moveDayToTarget(sourceId, targetId) {
+      timelineDaysState = reorderByTarget(timelineDaysState, sourceId, targetId);
+      refreshTimelineAndMapViews();
+    }
+
+    function moveEventToTarget(dayId, sourceId, targetId) {
+      const day = timelineDaysState.find((item) => item.id === dayId);
+      if (!day) return;
+      day.events = reorderByTarget(day.events, sourceId, targetId);
+      refreshTimelineAndMapViews();
+    }
+
+    function movePointToTarget(sourceId, targetId) {
+      const day = mapDaysState.find((item) => item.id === currentMapDayId);
+      if (!day) return;
+      day.points = reorderByTarget(day.points, sourceId, targetId);
+      refreshTimelineAndMapViews();
+    }
+
+    function refreshTimelineAndMapViews() {
+      syncMapStateWithTimeline();
+      const tabOptions = getTimelineTabOptions();
+      if (!tabOptions.some((tab) => tab.key === currentTimelineFilter)) {
+        currentTimelineFilter = "all";
+      }
+      document.getElementById("tabs").innerHTML = tabOptions.map((tab, index) => `
+        <button class="tab ${(index === 0 && currentTimelineFilter === "all") || tab.key === currentTimelineFilter ? "active" : ""}" type="button" data-filter="${tab.key}">${tab.label}</button>
+      `).join("");
+      document.getElementById("timelineFilters").innerHTML = tabOptions.map((tab) => `
+        <button class="timeline-filter ${tab.key === currentTimelineFilter ? "active" : ""}" type="button" data-filter="${tab.key}">${tab.label}</button>
+      `).join("");
+      document.getElementById("timeline").innerHTML = timelineDaysState.map(createDayMarkup).join("");
+      mapDayTabsEl.innerHTML = mapDaysState.map((day) => `
+        <button class="map-day-tab ${day.id === currentMapDayId ? "active" : ""}" type="button" data-map-day="${day.id}">${day.label}</button>
+      `).join("");
+      applyFilter(currentTimelineFilter);
+      renderMap(currentMapDayId || mapDaysState[0]?.id);
+      renderModuleModes();
+      updateCountdown();
+    }
+
+    function addTimelineDay() {
+      const nextDate = window.prompt("输入新日期，格式 YYYY-MM-DD", "");
+      if (nextDate === null) return;
+      const normalizedDate = nextDate.trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(normalizedDate)) {
+        window.alert("日期格式请使用 YYYY-MM-DD，例如 2026-10-09。");
+        return;
+      }
+      const options = getTimelineTabOptions()
+        .filter((item) => item.key !== "all")
+        .map((item) => `${item.key}: ${item.label}`)
+        .join("\n");
+      const chosenKey = window.prompt(`输入要归属的 key。\n可以填已有 key，也可以直接输入一个新的 key 名称。\n\n已有 key：\n${options}`, currentTimelineFilter !== "all" ? currentTimelineFilter : "riviera");
+      if (chosenKey === null) return;
+      const nextKey = chosenKey.trim();
+      if (!nextKey) {
+        window.alert("key 不能为空。");
+        return;
+      }
+      const tripId = generateItemId("trip-day");
+      timelineDaysState.push({
+        id: generateItemId("day"),
+        tripId,
+        key: nextKey,
+        date: normalizedDate,
+        city: "",
+        title: "",
+        theme: "",
+        badge: "",
+        notes: [],
+        events: []
+      });
+      timelineDaysState.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+      mapDaysState.push({
+        id: generateItemId("map"),
+        tripId,
+        label: formatMapLabelFromDate(normalizedDate),
+        title: "",
+        summary: "",
+        mapType: inferMapTypeFromKey(nextKey),
+        points: []
+      });
+      refreshTimelineAndMapViews();
+    }
+
+    function deleteTimelineDay(id) {
+      const target = timelineDaysState.find((day) => day.id === id);
+      if (!target) return;
+      const confirmed = window.confirm(`确定删除这一天吗？\n\n${target.title || target.date || id}`);
+      if (!confirmed) return;
+      timelineDaysState = timelineDaysState.filter((day) => day.id !== id);
+      mapDaysState = mapDaysState.filter((day) => day.tripId !== target.tripId);
+      refreshTimelineAndMapViews();
+    }
+
+    function moveTimelineDay(id, direction) {
+      timelineDaysState = moveItem(timelineDaysState, id, direction);
+      refreshTimelineAndMapViews();
+    }
+
+    function updateTimelineDayField(id, field) {
+      const target = timelineDaysState.find((day) => day.id === id);
+      if (!target) return;
+      const currentValue = target[field] || "";
+      const labels = {
+        title: "Day 标题",
+        date: "日期（YYYY-MM-DD）",
+        city: "城市",
+        theme: "主题",
+        badge: "角标"
+      };
+      const nextValue = window.prompt(`修改${labels[field] || "内容"}`, field === "date" ? target.date : currentValue);
+      if (nextValue === null) return;
+      target[field] = nextValue.trim();
+      const linkedMap = mapDaysState.find((day) => day.tripId === target.tripId);
+      if (linkedMap) {
+        linkedMap.label = formatMapLabelFromDate(target.date);
+        linkedMap.mapType = inferMapTypeFromKey(target.key);
+      }
+      refreshTimelineAndMapViews();
+    }
+
+    function addTimelineEvent(dayId) {
+      const target = timelineDaysState.find((day) => day.id === dayId);
+      if (!target) return;
+      target.events.push({
+        id: generateItemId("event"),
+        time: "",
+        title: "",
+        detail: "",
+        meta: []
+      });
+      refreshTimelineAndMapViews();
+    }
+
+    function updateTimelineEventField(dayId, eventId, field) {
+      const day = timelineDaysState.find((item) => item.id === dayId);
+      const event = day?.events.find((item) => item.id === eventId);
+      if (!event) return;
+      const labels = {
+        time: "时间",
+        title: "事件标题",
+        detail: "事件说明"
+      };
+      const nextValue = window.prompt(`修改${labels[field] || "内容"}`, event[field] || "");
+      if (nextValue === null) return;
+      event[field] = nextValue.trim();
+      refreshTimelineAndMapViews();
+    }
+
+    function moveTimelineEvent(dayId, eventId, direction) {
+      const day = timelineDaysState.find((item) => item.id === dayId);
+      if (!day) return;
+      day.events = moveItem(day.events, eventId, direction);
+      refreshTimelineAndMapViews();
+    }
+
+    function deleteTimelineEvent(dayId, eventId) {
+      const day = timelineDaysState.find((item) => item.id === dayId);
+      if (!day) return;
+      day.events = day.events.filter((item) => item.id !== eventId);
+      refreshTimelineAndMapViews();
+    }
+
+    function buildGoogleRouteUrl(points) {
+      const namedPoints = points.map((point) => point.name.trim()).filter(Boolean);
+      if (!namedPoints.length) return "https://www.google.com/maps";
+      if (namedPoints.length === 1) {
+        return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(namedPoints[0])}`;
+      }
+      const origin = encodeURIComponent(namedPoints[0]);
+      const destination = encodeURIComponent(namedPoints[namedPoints.length - 1]);
+      const waypoints = namedPoints.slice(1, -1).map((point) => encodeURIComponent(point)).join("|");
+      return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}${waypoints ? `&waypoints=${waypoints}` : ""}&travelmode=transit`;
+    }
+
+    function updateMapDayField(field) {
+      const target = mapDaysState.find((day) => day.id === currentMapDayId);
+      if (!target) return;
+      const labels = {
+        title: "地图标题",
+        summary: "地图摘要",
+        mapType: "地图底图类型"
+      };
+      let nextValue = "";
+      if (field === "mapType") {
+        const options = Object.entries(mapViews).map(([key, view]) => `${key}: ${view.label}`).join("\n");
+        nextValue = window.prompt(`修改${labels[field] || "内容"}。\n请输入下列 key 之一：\n${options}`, target.mapType || "riviera");
+      } else {
+        nextValue = window.prompt(`修改${labels[field] || "内容"}`, target[field] || "");
+      }
+      if (nextValue === null) return;
+      const normalizedValue = nextValue.trim();
+      if (field === "mapType") {
+        if (!mapViews[normalizedValue]) {
+          window.alert("请输入有效的地图类型 key，例如 riviera、paris 或 wide。");
+          return;
+        }
+        target.mapType = normalizedValue;
+      } else {
+        target[field] = normalizedValue;
+      }
+      refreshTimelineAndMapViews();
+    }
+
+    function addMapPoint() {
+      const target = mapDaysState.find((day) => day.id === currentMapDayId);
+      if (!target) return;
+      target.points.push({
+        id: generateItemId("point"),
+        name: "",
+        note: "",
+        x: 24 + target.points.length * 10,
+        y: 28 + (target.points.length % 3) * 8
+      });
+      refreshTimelineAndMapViews();
+    }
+
+    function updateMapPointField(pointId, field) {
+      const target = mapDaysState.find((day) => day.id === currentMapDayId);
+      const point = target?.points.find((item) => item.id === pointId);
+      if (!point) return;
+      const labels = {
+        name: "地点名称",
+        note: "地点备注"
+      };
+      const nextValue = window.prompt(`修改${labels[field] || "内容"}`, point[field] || "");
+      if (nextValue === null) return;
+      point[field] = nextValue.trim();
+      refreshTimelineAndMapViews();
+    }
+
+    function moveMapPoint(pointId, direction) {
+      const target = mapDaysState.find((day) => day.id === currentMapDayId);
+      if (!target) return;
+      target.points = moveItem(target.points, pointId, direction);
+      refreshTimelineAndMapViews();
+    }
+
+    function deleteMapPoint(pointId) {
+      const target = mapDaysState.find((day) => day.id === currentMapDayId);
+      if (!target) return;
+      target.points = target.points.filter((item) => item.id !== pointId);
+      refreshTimelineAndMapViews();
+    }
+
+    function normalizeDayKeyText(text) {
+      const dotMatch = String(text).match(/(\d{1,2})\.(\d{1,2})/);
+      if (dotMatch) return `${Number(dotMatch[1])}-${Number(dotMatch[2])}`;
+      const cnMatch = String(text).match(/(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
+      if (cnMatch) return `${Number(cnMatch[1])}-${Number(cnMatch[2])}`;
+      return "";
+    }
+
+    function getMapDayLinks(day) {
+      const targetKey = normalizeDayKeyText(day.label || day.title || "");
+      return dayLinks.find((group) => normalizeDayKeyText(group.title) === targetKey) || null;
+    }
+
+    function applyFilter(filter) {
+      currentTimelineFilter = filter;
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.filter === filter);
+      });
+      document.querySelectorAll(".timeline-filter").forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.filter === filter);
+      });
+      document.querySelectorAll(".day-card").forEach((card) => {
+        const matches = filter === "all" || card.dataset.key === filter;
+        card.classList.toggle("hidden", !matches);
+      });
+      renderDaySubtabs(filter);
+      renderModuleModes();
+    }
+
+    function renderDaySubtabs(filter) {
+      const visibleDays = timelineDaysState.filter((day) => filter === "all" || day.key === filter);
+      daySubtabsEl.innerHTML = visibleDays.map((day) => `
+        <a class="day-subtab" href="#${day.id}" data-day-target="${day.id}">${formatMapLabelFromDate(day.date) || day.title.split("｜")[0]}</a>
+      `).join("");
+    }
+
+    function renderMap(dayId = currentMapDayId || mapDaysState[0]?.id) {
+      const currentDay = mapDaysState.find((day) => day.id === dayId) || mapDaysState[0];
+      if (!currentDay) return;
+      currentMapDayId = currentDay.id;
+      const currentView = mapViews[currentDay.mapType];
+      mapTitleEl.innerHTML = `<span class="inline-editable inline-editable-hint${currentDay.title ? "" : " is-empty"}" data-empty-label="点击填写地图标题" data-map-field="title">${escapeHtml(currentDay.title || "")}</span> · <span class="inline-editable inline-editable-hint" data-map-field="mapType">${escapeHtml(currentView.label)}</span>`;
+      mapSummaryEl.innerHTML = `<span class="inline-editable inline-editable-hint${currentDay.summary ? "" : " is-empty"}" data-empty-label="点击填写地图摘要" data-map-field="summary">${escapeHtml(currentDay.summary || "")}</span> 地图会自动放大到能更清晰展示全部标点的位置。`;
+
+      mapDayTabsEl.querySelectorAll(".map-day-tab").forEach((button) => {
+        button.classList.toggle("active", button.dataset.mapDay === currentDay.id);
+      });
+
+      mapGoogleLinkEl.href = buildGoogleRouteUrl(currentDay.points);
+      mapGoogleLinkEl.textContent = `打开 ${currentDay.label} 的 Google Maps 路线`;
+      mapEmbedNoteEl.textContent = "可以直接跳到 Google Maps 查看在线路线；如果要在页面里完整内嵌多点顺序地图，通常还需要额外的 Embed/API 配置和联网支持。";
+
+      const [, , viewWidthRaw, viewHeightRaw] = currentView.viewBox.split(" ").map(Number);
+      const viewWidth = viewWidthRaw || 100;
+      const viewHeight = viewHeightRaw || 60;
+      const projectedPoints = projectMapPoints(currentDay.points, viewWidth, viewHeight);
+
+      const pointDots = projectedPoints.map((point, index) => {
+        const nextPoint = projectedPoints[index + 1];
+        const line = nextPoint
+          ? `<line x1="${point.x}" y1="${point.y}" x2="${nextPoint.x}" y2="${nextPoint.y}" stroke="rgba(196,95,60,0.55)" stroke-width="1.4" stroke-dasharray="3 2" />`
+          : "";
+        const labelOffsetX = [3.4, -3.2, 3.4, -3.4, 2.8, -2.8][index % 6];
+        const labelOffsetY = [-3.2, 3.8, -4.2, 4.2, -2.8, 3.2][index % 6];
+        const labelAnchor = labelOffsetX < 0 ? "end" : "start";
+        return `
+          ${line}
+          <circle cx="${point.x}" cy="${point.y}" r="3.2" fill="var(--accent)" stroke="white" stroke-width="0.9" />
+          <circle cx="${point.x}" cy="${point.y}" r="6.6" fill="rgba(196,95,60,0.12)" />
+          <text x="${point.x}" y="${point.y + 1}" text-anchor="middle" fill="white" font-size="2.6" font-weight="800">${index + 1}</text>
+          <text x="${point.x + labelOffsetX}" y="${point.y + labelOffsetY}" text-anchor="${labelAnchor}" fill="currentColor" font-size="2.6" font-weight="700">${point.name}</text>
+        `;
+      }).join("");
+
+      tripMapSvgEl.setAttribute("viewBox", currentView.viewBox);
+      tripMapSvgEl.innerHTML = `
+        <g>
+          ${currentView.backdrop}
+          ${pointDots}
+        </g>
+      `;
+
+      mapLegendEl.innerHTML = currentDay.points.map((point, index) => `
+        <article class="map-point-card" data-point-id="${point.id}" data-sort-kind="point" data-sort-id="${point.id}" draggable="true">
+          <h4 class="inline-editable inline-editable-hint${point.name ? "" : " is-empty"}" data-empty-label="点击填写地点名" data-point-field="name" data-point-id="${point.id}">${index + 1}. ${escapeHtml(point.name)}</h4>
+          <p class="inline-editable inline-editable-hint${point.note ? "" : " is-empty"}" data-empty-label="点击填写地点备注" data-point-field="note" data-point-id="${point.id}">${escapeHtml(point.note)}</p>
+          <div class="item-edit-tools">
+            <button class="item-action" type="button" data-point-move="up" data-point-id="${point.id}">上移</button>
+            <button class="item-action" type="button" data-point-move="down" data-point-id="${point.id}">下移</button>
+            <button class="item-action" type="button" data-point-action="delete" data-point-id="${point.id}">删除</button>
+          </div>
+        </article>
+      `).join("");
+
+      const currentLinks = currentDay.points.map((point) => ({
+        label: point.name || "未命名地点",
+        href: buildGoogleRouteUrl([point])
+      }));
+      if (mapDayLinksEl) {
+        mapDayLinksEl.innerHTML = currentLinks ? createDayLinksMarkup(currentLinks) : "";
+      }
+    }
+
+    function formatFileSize(bytes) {
+      if (!bytes) return "0 B";
+      const units = ["B", "KB", "MB", "GB"];
+      const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+      const size = bytes / (1024 ** exponent);
+      return `${size.toFixed(size >= 10 || exponent === 0 ? 0 : 1)} ${units[exponent]}`;
+    }
+
+    function generateAttachmentId() {
+      if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+      return `attachment-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function openAttachmentDb() {
+      if (attachmentDbPromise) return attachmentDbPromise;
+      attachmentDbPromise = new Promise((resolve, reject) => {
+        if (!("indexedDB" in window)) {
+          reject(new Error("当前浏览器不支持 IndexedDB"));
+          return;
+        }
+        const request = indexedDB.open("trip-attachment-db", 1);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          const store = db.createObjectStore("attachments", { keyPath: "id" });
+          store.createIndex("bucket", "bucket", { unique: false });
+          store.createIndex("updatedAt", "updatedAt", { unique: false });
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("打开附件数据库失败"));
+      });
+      return attachmentDbPromise;
+    }
+
+    async function withAttachmentStore(mode, callback) {
+      const db = await openAttachmentDb();
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction("attachments", mode);
+        const store = transaction.objectStore("attachments");
+        const result = callback(store);
+        transaction.oncomplete = () => resolve(result);
+        transaction.onerror = () => reject(transaction.error || new Error("附件操作失败"));
+      });
+    }
+
+    async function listAttachments(bucket) {
+      const db = await openAttachmentDb();
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction("attachments", "readonly");
+        const store = transaction.objectStore("attachments");
+        const index = store.index("bucket");
+        const request = index.getAll(bucket);
+        request.onsuccess = () => {
+          const items = (request.result || []).sort((a, b) => b.updatedAt - a.updatedAt);
+          resolve(items);
+        };
+        request.onerror = () => reject(request.error || new Error("读取附件列表失败"));
+      });
+    }
+
+    async function getAttachment(id) {
+      const db = await openAttachmentDb();
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction("attachments", "readonly");
+        const store = transaction.objectStore("attachments");
+        const request = store.get(id);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("读取附件失败"));
+      });
+    }
+
+    async function saveAttachment(bucket, file, originalName) {
+      const payload = {
+        id: generateAttachmentId(),
+        bucket,
+        name: originalName || file.name || "未命名附件",
+        type: file.type || "application/octet-stream",
+        size: file.size || 0,
+        fileData: file,
+        updatedAt: Date.now()
+      };
+      await withAttachmentStore("readwrite", (store) => store.put(payload));
+      return payload;
+    }
+
+    async function updateAttachment(id, updates) {
+      const existing = await getAttachment(id);
+      if (!existing) throw new Error("附件不存在");
+      const nextValue = {
+        ...existing,
+        ...updates,
+        updatedAt: Date.now()
+      };
+      await withAttachmentStore("readwrite", (store) => store.put(nextValue));
+      return nextValue;
+    }
+
+    async function deleteAttachment(id) {
+      await withAttachmentStore("readwrite", (store) => store.delete(id));
+    }
+
+    async function deleteAttachmentsByBucket(bucket) {
+      const db = await openAttachmentDb();
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction("attachments", "readwrite");
+        const store = transaction.objectStore("attachments");
+        const index = store.index("bucket");
+        const request = index.getAllKeys(bucket);
+        request.onsuccess = () => {
+          (request.result || []).forEach((id) => {
+            store.delete(id);
+          });
+        };
+        request.onerror = () => reject(request.error || new Error("读取附件桶失败"));
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error || new Error("删除附件桶失败"));
+      });
+    }
+
+    function getAllAttachmentBuckets() {
+      return [
+        ...vouchersState.map((item) => getVoucherBucket(item.id)),
+        ...faresState.map((item) => getFareBucket(item.id))
+      ];
+    }
+
+    function renderAttachmentEmpty(bucket) {
+      const listEl = getAttachmentListEl(bucket);
+      if (!listEl) return;
+      listEl.innerHTML = "";
+    }
+
+    async function renderAttachmentList(bucket) {
+      const listEl = getAttachmentListEl(bucket);
+      if (!listEl) return;
+      try {
+        const items = await listAttachments(bucket);
+        if (!items.length) {
+          renderAttachmentEmpty(bucket);
+          return;
+        }
+        listEl.innerHTML = items.map((item) => `
+          <article class="attachment-item" data-attachment-id="${item.id}" data-bucket="${bucket}">
+            <div class="attachment-item-head">
+              <div>
+                <h4>${escapeHtml(item.name)}</h4>
+                <p class="attachment-meta">${escapeHtml(item.type || "未知类型")} · ${formatFileSize(item.size)} · 最近更新 ${escapeHtml(new Date(item.updatedAt).toLocaleString("zh-CN"))}</p>
+              </div>
+            </div>
+            <div class="attachment-actions">
+              <button class="attachment-action" type="button" data-action="open" data-id="${item.id}" data-bucket="${bucket}">打开</button>
+              <button class="attachment-action" type="button" data-action="rename" data-id="${item.id}" data-bucket="${bucket}">重命名</button>
+              <button class="attachment-action" type="button" data-action="replace" data-id="${item.id}" data-bucket="${bucket}">替换</button>
+              <button class="attachment-action" type="button" data-action="delete" data-id="${item.id}" data-bucket="${bucket}">删除</button>
+            </div>
+          </article>
+        `).join("");
+      } catch (error) {
+        listEl.innerHTML = `<div class="attachment-empty">附件加载失败：${error.message}</div>`;
+      }
+    }
+
+    async function handleUpload(bucket, files) {
+      const fileList = Array.from(files || []);
+      if (!fileList.length) return;
+      for (const file of fileList) {
+        await saveAttachment(bucket, file);
+      }
+      const inputEl = getAttachmentInputEl(bucket);
+      if (inputEl) inputEl.value = "";
+      await renderAttachmentList(bucket);
+    }
+
+    async function openAttachmentFile(id) {
+      const record = await getAttachment(id);
+      if (!record?.fileData) return;
+      const objectUrl = URL.createObjectURL(record.fileData);
+      window.open(objectUrl, "_blank", "noopener");
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 60 * 1000);
+    }
+
+    async function renameAttachmentFile(id) {
+      const record = await getAttachment(id);
+      if (!record) return;
+      const nextName = window.prompt("输入新的附件名称", record.name);
+      if (!nextName || nextName.trim() === "" || nextName.trim() === record.name) return;
+      await updateAttachment(id, { name: nextName.trim() });
+      await renderAttachmentList(record.bucket);
+    }
+
+    async function replaceAttachmentFile(id) {
+      const record = await getAttachment(id);
+      if (!record) return;
+      const input = document.createElement("input");
+      input.type = "file";
+      input.addEventListener("change", async () => {
+        const file = input.files?.[0];
+        if (!file) return;
+        await updateAttachment(id, {
+          name: file.name || record.name,
+          type: file.type || "application/octet-stream",
+          size: file.size || 0,
+          fileData: file
+        });
+        await renderAttachmentList(record.bucket);
+      }, { once: true });
+      input.click();
+    }
+
+    async function removeAttachmentFile(id) {
+      const record = await getAttachment(id);
+      if (!record) return;
+      const confirmed = window.confirm(`确定删除附件“${record.name}”吗？`);
+      if (!confirmed) return;
+      await deleteAttachment(id);
+      await renderAttachmentList(record.bucket);
+    }
+
+    async function initAttachmentManagers() {
+      const buckets = getAllAttachmentBuckets();
+      try {
+        await openAttachmentDb();
+        await Promise.all(buckets.map((bucket) => renderAttachmentList(bucket)));
+      } catch (error) {
+        buckets.forEach((bucket) => {
+          const listEl = getAttachmentListEl(bucket);
+          if (!listEl) return;
+          listEl.innerHTML = `<div class="attachment-empty">附件功能不可用：${error.message}</div>`;
+        });
+      }
+    }
+
+    function projectMapPoints(points, viewWidth, viewHeight) {
+      if (!points.length) return [];
+      if (points.length === 1) {
+        return [{ ...points[0], x: viewWidth / 2, y: viewHeight / 2 }];
+      }
+
+      const paddingX = 14;
+      const paddingY = 10;
+      const xs = points.map((point) => point.x);
+      const ys = points.map((point) => point.y);
+      const minX = Math.min(...xs);
+      const maxX = Math.max(...xs);
+      const minY = Math.min(...ys);
+      const maxY = Math.max(...ys);
+
+      const rawWidth = Math.max(maxX - minX, 1);
+      const rawHeight = Math.max(maxY - minY, 1);
+      const effectiveWidth = Math.max(rawWidth, viewWidth * 0.22);
+      const effectiveHeight = Math.max(rawHeight, viewHeight * 0.26);
+      const centerX = (minX + maxX) / 2;
+      const centerY = (minY + maxY) / 2;
+      const domainMinX = centerX - effectiveWidth / 2;
+      const domainMinY = centerY - effectiveHeight / 2;
+      const plotWidth = viewWidth - paddingX * 2;
+      const plotHeight = viewHeight - paddingY * 2;
+
+      return points.map((point) => ({
+        ...point,
+        x: paddingX + ((point.x - domainMinX) / effectiveWidth) * plotWidth,
+        y: paddingY + ((point.y - domainMinY) / effectiveHeight) * plotHeight
+      }));
+    }
+
+    function setupBookmarks() {
+      const links = Array.from(document.querySelectorAll(".bookmark-link"));
+      const sections = Array.from(document.querySelectorAll("[data-bookmark-section]"));
+
+      function setActiveBookmark(activeId) {
+        links.forEach((link) => {
+          link.classList.toggle("active", link.dataset.bookmark === activeId);
+        });
+      }
+
+      function updateActiveBookmark() {
+        const threshold = 148;
+        let activeId = sections[0]?.id;
+        sections.forEach((section) => {
+          const top = section.getBoundingClientRect().top;
+          if (top - threshold <= 0) {
+            activeId = section.id;
+          }
+        });
+        if (activeId) setActiveBookmark(activeId);
+      }
+
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          setActiveBookmark(link.dataset.bookmark);
+        });
+      });
+
+      window.addEventListener("scroll", updateActiveBookmark, { passive: true });
+      window.addEventListener("resize", updateActiveBookmark);
+      updateActiveBookmark();
+    }
+
+    function formatEventDate(date, timeZone = "Europe/Paris") {
+      return new Intl.DateTimeFormat("zh-CN", {
+        month: "numeric",
+        day: "numeric",
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone,
+        hour12: false
+      }).format(date);
+    }
+
+    function formatCountdown(diffMs) {
+      if (diffMs <= 0) return "进行中";
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      if (days > 0) return `${days} 天 ${hours} 小时 ${minutes} 分`;
+      return `${hours} 小时 ${minutes} 分`;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const anchorEvents = getAnchorEvents();
+      const next = anchorEvents.find((event) => event.date > now);
+
+      if (!next) {
+        countdownEl.textContent = "已完成";
+        countdownSubEl.textContent = "所有关键节点都已过去，手册自动切换为归档视图。";
+        nextEventCardEl.innerHTML = `<strong>旅程结束</strong><span class="muted">这份手册可以继续作为照片整理和报销回顾参考。</span>`;
+        return;
+      }
+
+      const diff = next.date - now;
+      countdownEl.textContent = formatCountdown(diff);
+      countdownSubEl.textContent = `距离下一关键节点还有 ${formatCountdown(diff)}。`;
+      nextEventCardEl.innerHTML = `
+        <strong>${next.title}</strong>
+        <span class="muted">${formatEventDate(next.date, next.timeZone)} · ${next.place}</span>
+      `;
+    }
+
+    renderStaticSections();
+    applyFilter("all");
+    renderMap();
+    updateCountdown();
+    setupBookmarks();
+    initAttachmentManagers();
+    setInterval(updateCountdown, 30000);
+
+    document.getElementById("addVoucherBtn").addEventListener("click", () => {
+      addVoucherItem();
+    });
+    document.getElementById("editVoucherBtn").addEventListener("click", () => {
+      toggleEditMode("vouchers");
+    });
+
+    document.getElementById("addFareBtn").addEventListener("click", () => {
+      addFareItem();
+    });
+    document.getElementById("editFareBtn").addEventListener("click", () => {
+      toggleEditMode("fares");
+    });
+
+    document.getElementById("addCheckBtn").addEventListener("click", () => {
+      addCheckItem();
+    });
+    document.getElementById("editCheckBtn").addEventListener("click", () => {
+      toggleEditMode("checks");
+    });
+    document.getElementById("editTimelineBtn").addEventListener("click", () => {
+      toggleEditMode("timeline");
+    });
+    document.getElementById("addTimelineDayBtn").addEventListener("click", () => {
+      addTimelineDay();
+    });
+    document.getElementById("editMapBtn").addEventListener("click", () => {
+      toggleEditMode("map");
+    });
+    document.getElementById("addMapPointBtn").addEventListener("click", () => {
+      addMapPoint();
+    });
+
+    document.getElementById("tabs").addEventListener("click", (event) => {
+      const button = event.target.closest(".tab");
+      if (!button) return;
+      applyFilter(button.dataset.filter);
+    });
+
+    document.getElementById("timelineFilters").addEventListener("click", (event) => {
+      const button = event.target.closest(".timeline-filter");
+      if (!button) return;
+      applyFilter(button.dataset.filter);
+      document.getElementById("timeline-section").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    daySubtabsEl.addEventListener("click", (event) => {
+      const link = event.target.closest(".day-subtab");
+      if (!link) return;
+      event.preventDefault();
+      const target = document.getElementById(link.dataset.dayTarget);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    mapDayTabsEl.addEventListener("click", (event) => {
+      const button = event.target.closest(".map-day-tab");
+      if (!button) return;
+      renderMap(button.dataset.mapDay);
+    });
+
+    document.getElementById("checklist").addEventListener("input", (event) => {
+      const textarea = event.target.closest("[data-check-note]");
+      if (!textarea) return;
+      const targetCheck = checksState.find((item) => item.id === textarea.dataset.checkNote);
+      if (!targetCheck) return;
+      targetCheck.note = textarea.value;
+      persistChecksState();
+    });
+
+    document.getElementById("checklist").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-check-action]");
+      if (button) {
+        const { checkAction, checkId } = button.dataset;
+        const targetCheck = checksState.find((item) => item.id === checkId);
+        if (!targetCheck) return;
+        if (checkAction !== "delete") return;
+        const confirmed = window.confirm(`确定删除这条确认项吗？\n\n${targetCheck.text || "这条空白确认项"}`);
+        if (!confirmed) return;
+        checksState = checksState.filter((item) => item.id !== checkId);
+        persistChecksState();
+        renderChecks();
+        return;
+      }
+
+      const fieldTarget = event.target.closest("[data-check-field]");
+      if (!fieldTarget) return;
+      if (!editModes.checks) return;
+      updateCheckField(fieldTarget.dataset.checkId);
+      return;
+    });
+
+    document.getElementById("checklist").addEventListener("click", (event) => {
+      const moveButton = event.target.closest("[data-check-move]");
+      if (!moveButton || !editModes.checks) return;
+      moveCheckItem(moveButton.dataset.checkId, moveButton.dataset.checkMove);
+    });
+
+    document.getElementById("voucherList").addEventListener("click", async (event) => {
+      const actionButton = event.target.closest("[data-voucher-action]");
+      if (actionButton) {
+        const { voucherAction, voucherId } = actionButton.dataset;
+        if (voucherAction === "delete") {
+          await deleteVoucherItem(voucherId);
+          return;
+        }
+      }
+
+      const fieldTarget = event.target.closest("[data-voucher-field]");
+      if (!fieldTarget) return;
+      if (!editModes.vouchers) return;
+      updateVoucherField(fieldTarget.dataset.voucherId, fieldTarget.dataset.voucherField);
+    });
+
+    document.getElementById("voucherList").addEventListener("click", (event) => {
+      const moveButton = event.target.closest("[data-voucher-move]");
+      if (!moveButton || !editModes.vouchers) return;
+      moveVoucherItem(moveButton.dataset.voucherId, moveButton.dataset.voucherMove);
+    });
+
+    document.getElementById("fareList").addEventListener("click", async (event) => {
+      const actionButton = event.target.closest("[data-fare-action]");
+      if (actionButton) {
+        const { fareAction, fareId } = actionButton.dataset;
+        if (fareAction === "delete") {
+          await deleteFareItem(fareId);
+          return;
+        }
+      }
+
+      const fieldTarget = event.target.closest("[data-fare-field]");
+      if (!fieldTarget) return;
+      if (!editModes.fares) return;
+      updateFareField(fieldTarget.dataset.fareId, fieldTarget.dataset.fareField);
+    });
+
+    document.getElementById("fareList").addEventListener("click", (event) => {
+      const moveButton = event.target.closest("[data-fare-move]");
+      if (!moveButton || !editModes.fares) return;
+      moveFareItem(moveButton.dataset.fareId, moveButton.dataset.fareMove);
+    });
+
+    document.getElementById("timeline").addEventListener("click", (event) => {
+      const dayMoveButton = event.target.closest("[data-day-move]");
+      if (dayMoveButton && editModes.timeline) {
+        moveTimelineDay(dayMoveButton.dataset.dayId, dayMoveButton.dataset.dayMove);
+        return;
+      }
+
+      const dayActionButton = event.target.closest("[data-day-action]");
+      if (dayActionButton && editModes.timeline) {
+        const { dayAction, dayId } = dayActionButton.dataset;
+        if (dayAction === "delete") {
+          deleteTimelineDay(dayId);
+          return;
+        }
+        if (dayAction === "add-event") {
+          addTimelineEvent(dayId);
+          return;
+        }
+      }
+
+      const eventMoveButton = event.target.closest("[data-event-move]");
+      if (eventMoveButton && editModes.timeline) {
+        moveTimelineEvent(eventMoveButton.dataset.dayId, eventMoveButton.dataset.eventId, eventMoveButton.dataset.eventMove);
+        return;
+      }
+
+      const eventActionButton = event.target.closest("[data-event-action]");
+      if (eventActionButton && editModes.timeline) {
+        deleteTimelineEvent(eventActionButton.dataset.dayId, eventActionButton.dataset.eventId);
+        return;
+      }
+
+      const eventFieldTarget = event.target.closest("[data-event-field]");
+      if (eventFieldTarget && editModes.timeline) {
+        updateTimelineEventField(eventFieldTarget.dataset.dayId, eventFieldTarget.dataset.eventId, eventFieldTarget.dataset.eventField);
+        return;
+      }
+
+      const dayFieldTarget = event.target.closest("[data-day-field]");
+      if (dayFieldTarget && editModes.timeline) {
+        updateTimelineDayField(dayFieldTarget.dataset.dayId, dayFieldTarget.dataset.dayField);
+      }
+    });
+
+    document.getElementById("essentials").addEventListener("click", async (event) => {
+      const uploadButton = event.target.closest("[data-upload-bucket]");
+      if (uploadButton) {
+        const bucket = uploadButton.dataset.uploadBucket;
+        getAttachmentInputEl(bucket)?.click();
+        return;
+      }
+
+      const actionButton = event.target.closest("[data-action]");
+      if (!actionButton) return;
+      const { action, id } = actionButton.dataset;
+      if (!id) return;
+      if (action === "open") {
+        await openAttachmentFile(id);
+        return;
+      }
+      if (action === "rename") {
+        await renameAttachmentFile(id);
+        return;
+      }
+      if (action === "replace") {
+        await replaceAttachmentFile(id);
+        return;
+      }
+      if (action === "delete") {
+        await removeAttachmentFile(id);
+      }
+    });
+
+    document.getElementById("essentials").addEventListener("change", async (event) => {
+      const input = event.target.closest("[data-attachment-input]");
+      if (!input) return;
+      await handleUpload(input.dataset.attachmentInput, input.files);
+    });
+
+    document.getElementById("trip-map").addEventListener("click", (event) => {
+      const mapFieldTarget = event.target.closest("[data-map-field]");
+      if (mapFieldTarget && editModes.map) {
+        updateMapDayField(mapFieldTarget.dataset.mapField);
+        return;
+      }
+
+      const pointMoveButton = event.target.closest("[data-point-move]");
+      if (pointMoveButton && editModes.map) {
+        moveMapPoint(pointMoveButton.dataset.pointId, pointMoveButton.dataset.pointMove);
+        return;
+      }
+
+      const pointActionButton = event.target.closest("[data-point-action]");
+      if (pointActionButton && editModes.map) {
+        deleteMapPoint(pointActionButton.dataset.pointId);
+        return;
+      }
+
+      const pointFieldTarget = event.target.closest("[data-point-field]");
+      if (pointFieldTarget && editModes.map) {
+        updateMapPointField(pointFieldTarget.dataset.pointId, pointFieldTarget.dataset.pointField);
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-chip-add]");
+      if (addButton) {
+        const scope = addButton.dataset.chipAdd;
+        if (!canDragSort(scope)) return;
+        addChip(scope, addButton.dataset);
+        return;
+      }
+
+      const deleteButton = event.target.closest("[data-chip-delete]");
+      if (deleteButton) {
+        const scope = deleteButton.dataset.chipDelete;
+        if (!canDragSort(scope)) return;
+        deleteChip(scope, deleteButton.dataset, Number(deleteButton.dataset.chipIndex));
+        return;
+      }
+
+      const chipLabel = event.target.closest("[data-chip-edit]");
+      if (chipLabel) {
+        const scope = chipLabel.dataset.chipEdit;
+        if (!canDragSort(scope)) return;
+        updateChip(scope, chipLabel.dataset, Number(chipLabel.dataset.chipIndex));
+      }
+    });
+
+    document.addEventListener("dragstart", (event) => {
+      const chipItem = event.target.closest("[data-chip-scope][data-chip-index]");
+      if (chipItem) {
+        const scope = chipItem.dataset.chipScope;
+        if (!canDragSort(scope)) {
+          event.preventDefault();
+          return;
+        }
+        dragState = {
+          type: "chip",
+          scope,
+          index: Number(chipItem.dataset.chipIndex),
+          dataset: { ...chipItem.dataset }
+        };
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", `${scope}:${chipItem.dataset.chipIndex}`);
+        return;
+      }
+
+      const sortItem = event.target.closest("[data-sort-kind][data-sort-id]");
+      if (sortItem) {
+        const kind = sortItem.dataset.sortKind;
+        if (!canDragSort(kind)) {
+          event.preventDefault();
+          return;
+        }
+        dragState = {
+          type: "item",
+          kind,
+          id: sortItem.dataset.sortId,
+          parent: sortItem.dataset.sortParent || ""
+        };
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", `${kind}:${sortItem.dataset.sortId}`);
+      }
+    });
+
+    document.addEventListener("dragover", (event) => {
+      if (!dragState) return;
+      const chipTarget = event.target.closest("[data-chip-scope][data-chip-index]");
+      const sortTarget = event.target.closest("[data-sort-kind][data-sort-id]");
+      if (chipTarget || sortTarget) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+      }
+    });
+
+    document.addEventListener("drop", (event) => {
+      if (!dragState) return;
+
+      if (dragState.type === "chip") {
+        const chipTarget = event.target.closest("[data-chip-scope][data-chip-index]");
+        if (!chipTarget) {
+          dragState = null;
+          return;
+        }
+        const sameScope = chipTarget.dataset.chipScope === dragState.scope;
+        const sameVoucher = (chipTarget.dataset.voucherId || "") === (dragState.dataset.voucherId || "");
+        const sameDay = (chipTarget.dataset.dayId || "") === (dragState.dataset.dayId || "");
+        const sameEvent = (chipTarget.dataset.eventId || "") === (dragState.dataset.eventId || "");
+        if (!sameScope || !sameVoucher || !sameDay || !sameEvent) {
+          dragState = null;
+          return;
+        }
+        event.preventDefault();
+        moveChip(dragState.scope, dragState.dataset, dragState.index, Number(chipTarget.dataset.chipIndex));
+        dragState = null;
+        return;
+      }
+
+      const sortTarget = event.target.closest("[data-sort-kind][data-sort-id]");
+      if (!sortTarget || sortTarget.dataset.sortKind !== dragState.kind) {
+        dragState = null;
+        return;
+      }
+      if ((sortTarget.dataset.sortParent || "") !== (dragState.parent || "")) {
+        dragState = null;
+        return;
+      }
+      event.preventDefault();
+      if (dragState.kind === "voucher") moveVoucherToTarget(dragState.id, sortTarget.dataset.sortId);
+      if (dragState.kind === "fare") moveFareToTarget(dragState.id, sortTarget.dataset.sortId);
+      if (dragState.kind === "check") moveCheckToTarget(dragState.id, sortTarget.dataset.sortId);
+      if (dragState.kind === "day") moveDayToTarget(dragState.id, sortTarget.dataset.sortId);
+      if (dragState.kind === "event") moveEventToTarget(dragState.parent, dragState.id, sortTarget.dataset.sortId);
+      if (dragState.kind === "point") movePointToTarget(dragState.id, sortTarget.dataset.sortId);
+      dragState = null;
+    });
+
+    document.addEventListener("dragend", () => {
+      dragState = null;
+    });
+  </script>
+</body>
+</html>
